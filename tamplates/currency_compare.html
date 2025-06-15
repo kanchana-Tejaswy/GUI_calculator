@@ -2,86 +2,80 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Currency Converter</title>
+    <title>Currency Comparison</title>
     <style>
         body {
-            background-color: #e0f7fa;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            text-align: center;
+            background-color: #f0f4f8;
             padding: 40px;
+            text-align: center;
         }
 
         .container {
-            background-color: #ffffff;
+            background-color: white;
             padding: 30px;
             max-width: 500px;
             margin: auto;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
         h1 {
-            color: #00796b;
+            color: #1f2937;
+            margin-bottom: 20px;
         }
 
         input[type="number"] {
             width: 80%;
             padding: 10px;
             margin: 10px 0;
-            font-size: 16px;
-            border-radius: 5px;
             border: 1px solid #ccc;
+            border-radius: 8px;
         }
 
         button {
-            background-color: #00796b;
+            padding: 10px 20px;
+            background-color: #2563eb;
             color: white;
-            padding: 12px 20px;
-            font-size: 16px;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
+            font-size: 16px;
         }
 
         button:hover {
-            background-color: #004d40;
+            background-color: #1d4ed8;
         }
 
         .result {
             margin-top: 20px;
             font-size: 18px;
-            color: #444;
+            color: #111827;
         }
 
         a {
+            display: block;
             margin-top: 20px;
-            display: inline-block;
-            color: #00796b;
+            color: #2563eb;
             text-decoration: none;
         }
 
         a:hover {
             text-decoration: underline;
         }
-
     </style>
 </head>
 <body>
     <div class="container">
         <h1>💱 Currency Converter</h1>
-
         <form method="POST">
-            <input type="number" step="0.01" name="amount" placeholder="Enter Amount" required><br>
-            <input type="number" step="0.01" name="rate" placeholder="Exchange Rate" required><br>
+            <input type="number" name="amount" step="any" placeholder="Enter amount" required><br>
+            <input type="number" name="rate" step="any" placeholder="Exchange rate (e.g. 83.5)" required><br>
             <button type="submit">Convert</button>
         </form>
-
         {% if result %}
-            <div class="result">
-                <p>{{ result }}</p>
-            </div>
+            <div class="result">{{ result }}</div>
         {% endif %}
-
         <a href="/">← Back to Home</a>
     </div>
 </body>
