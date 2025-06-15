@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Currency Comparison</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>🌍 Currency Comparison</h1>
+
+    <form method="POST">
+        <input type="number" name="amount" placeholder="Enter amount in base currency" step="any" required><br>
+        <input type="number" name="rate" placeholder="Enter conversion rate (e.g. 1 USD = 83 INR → enter 83)" step="any" required><br>
+        <input type="submit" value="Convert">
+    </form>
+
+    {% if result %}
+        <h2 style="margin-top: 20px;">{{ result }}</h2>
+    {% endif %}
+
+    <div class="menu">
+        <a href="/">🏠 Basic Calculator</a>
+        <a href="/scientific">🔬 Scientific</a>
+        <a href="/simple-interest">📈 Simple Interest</a>
+        <a href="/money-value">📉 Money Value</a>
+        <a href="/todo">📝 To-Do</a>
+        <a href="/emi">💳 EMI Calculator</a>
+    </div>
+</body>
+</html>
