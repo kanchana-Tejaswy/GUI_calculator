@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Money Value Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>📉 Money Value Calculator</h1>
+
+    <form method="POST">
+        <input type="number" name="amount" placeholder="Enter current amount ₹" step="any" required><br>
+        <input type="number" name="inflation" placeholder="Inflation rate (%)" step="any" required><br>
+        <input type="number" name="years" placeholder="Years into the future" step="any" required><br>
+        <input type="submit" value="Estimate">
+    </form>
+
+    {% if result %}
+        <h2 style="margin-top: 20px;">{{ result }}</h2>
+    {% endif %}
+
+    <div class="menu">
+        <a href="/">🏠 Basic Calculator</a>
+        <a href="/scientific">🔬 Scientific</a>
+        <a href="/simple-interest">📈 Simple Interest</a>
+        <a href="/currency-compare">🌍 Currency Compare</a>
+        <a href="/todo">📝 To-Do</a>
+        <a href="/emi">💳 EMI Calculator</a>
+    </div>
+</body>
+</html>

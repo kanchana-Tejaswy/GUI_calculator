@@ -66,7 +66,6 @@ def currency_compare():
 # 📝 Bill To-Do List (Placeholder)
 @app.route("/todo", methods=["GET", "POST"])
 def todo():
-    # You can later add file or session-based todo saving here
     return render_template("todo.html")
 
 # 💳 EMI Calculator (Placeholder)
@@ -78,7 +77,7 @@ def emi():
             principal = float(request.form["principal"])
             rate = float(request.form["rate"]) / (12 * 100)
             months = int(request.form["months"])
-            emi = (principal * rate * ((1 + rate)*months)) / (((1 + rate)*months) - 1)
+            emi = (principal * rate * ((1 + rate) ** months)) / (((1 + rate) ** months) - 1)
             result = f"Monthly EMI: ₹{emi:.2f}"
         except:
             result = "Invalid Input"

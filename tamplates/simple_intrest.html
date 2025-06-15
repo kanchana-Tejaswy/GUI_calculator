@@ -4,18 +4,89 @@
     <meta charset="UTF-8">
     <title>Simple Interest Calculator</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            background-color: #121212;
+            color: #00FF88;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .calc-container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #1e1e1e;
+            border-radius: 15px;
+            box-shadow: 0 0 15px #00FF88;
+        }
+
+        input, select {
+            width: 90%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border: none;
+            background-color: #000;
+            color: #00FF88;
+            font-size: 1rem;
+        }
+
+        button {
+            background-color: #00FF88;
+            color: black;
+            padding: 12px 20px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #00cc66;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #00FF88;
+        }
+    </style>
 </head>
 <body>
     <h1>Simple Interest Calculator</h1>
-    <form method="POST">
-        <input type="number" name="principal" placeholder="Enter Principal (₹)" required><br>
-        <input type="number" name="rate" placeholder="Enter Rate (%)" step="0.01" required><br>
-        <input type="number" name="time" placeholder="Enter Time (in years)" required><br>
-        <input type="submit" value="Calculate">
-    </form>
+    <div class="calc-container">
+        <form id="interestForm" onsubmit="calculateInterest(event)">
+            <input type="number" id="principal" placeholder="Enter Principal Amount (₹)" required>
+            <input type="number" id="rate" placeholder="Enter Rate of Interest (%)" required>
+            <input type="number" id="time" placeholder="Enter Time (in Years)" required>
+            <button type="submit">Calculate</button>
+        </form>
+        <div id="result"></div>
+    </div>
 
-    {% if result %}
-        <h3 style="margin-top: 20px;">{{ result }}</h3>
-    {% endif %}
+    <script>
+        function calculateInterest(e) {
+            e.preventDefault();
+            let P = parseFloat(document.getElementById('principal').value);
+            let R = parseFloat(document.getElementById('rate').value);
+            let T = parseFloat(document.getElementById('time').value);
+
+            if (isNaN(P) || isNaN(R) || isNaN(T)) {
+                document.getElementById('result').innerText = "Please enter valid numbers.";
+                return;
+            }
+
+            let SI = (P * R * T) / 100;
+            let total = P + SI;
+
+            document.getElementById('result').innerHTML = `
+                <strong>Simple Interest:</strong> ₹${SI.toFixed(2)}<br>
+                <strong>Total Amount:</strong> ₹${total.toFixed(2)}
+            `;
+        }
+    </script>
 </body>
 </html>
