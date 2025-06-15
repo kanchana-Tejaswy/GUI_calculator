@@ -3,50 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <title>To-Do List</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <style>
         body {
-            background-color: #1e1e1e;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #00FF88;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            background-color: #f3f4f6;
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            text-align: center;
         }
 
-        .todo-container {
-            background-color: #121212;
+        .container {
+            background-color: #ffffff;
             padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 0 15px #00FF88;
-            width: 90%;
             max-width: 500px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
+        h1 {
+            color: #333;
         }
 
-        p {
-            text-align: center;
-            color: #aaaaaa;
+        ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: left;
+        }
+
+        li {
+            background: #e5e7eb;
+            margin: 8px 0;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
         }
 
         .coming-soon {
-            font-size: 1.2rem;
-            color: #00FF88;
-            text-align: center;
+            color: #555;
+            font-size: 18px;
             margin-top: 30px;
         }
     </style>
 </head>
 <body>
-    <div class="todo-container">
-        <h2>📋 To-Do List</h2>
-        <p>Task manager feature is under development.</p>
-        <div class="coming-soon">Coming Soon...</div>
+    <div class="container">
+        <h1>📝 To-Do List</h1>
+        <div class="coming-soon">Task saving feature coming soon!</div>
+        <ul>
+            <li>💼 Add EMI payment reminder</li>
+            <li>📊 Track savings progress</li>
+            <li>🛍 Record monthly expenses</li>
+        </ul>
+        <a href="/">← Back to Home</a>
     </div>
 </body>
 </html>
