@@ -2,79 +2,65 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>All-in-One Calculator App</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Multi-Mode Calculator</title>
     <style>
         body {
-            background-color: #1e1e1e;
-            color: #00FF88;
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
+            margin: 40px;
+            background-color: #f5f5f5;
             text-align: center;
         }
-
-        .container {
-            padding: 50px 20px;
-        }
-
         h1 {
-            margin-bottom: 30px;
-            font-size: 32px;
+            color: #333;
         }
-
-        .nav-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .nav-item {
-            background-color: #121212;
+        form {
+            margin: 20px auto;
             padding: 20px;
-            border-radius: 15px;
+            background-color: white;
+            width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ccc;
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px 0;
+            width: 90%;
+            font-size: 16px;
+        }
+        a {
+            margin: 10px;
+            display: inline-block;
             text-decoration: none;
-            color: #00FF88;
-            font-size: 18px;
-            box-shadow: 0 0 10px #00FF88;
-            transition: 0.3s ease;
+            color: #007bff;
         }
-
-        .nav-item:hover {
-            background-color: #00FF88;
-            color: #000;
-        }
-
-        footer {
-            margin-top: 50px;
-            font-size: 14px;
-            color: #aaa;
+        a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>📱 All-in-One Calculator App</h1>
+    <h1>🧮 Multi-Mode Calculator</h1>
 
-        <div class="nav-grid">
-            <a class="nav-item" href="/">🧮 Basic Calculator</a>
-            <a class="nav-item" href="/scientific">🔬 Scientific Calculator</a>
-            <a class="nav-item" href="/simple-interest">📈 Simple Interest Calculator</a>
-            <a class="nav-item" href="/money-value">⏳ Future Money Value</a>
-            <a class="nav-item" href="/currency-compare">🌍 Currency Comparison</a>
-            <a class="nav-item" href="/todo">📝 Bill To-Do List</a>
-            <a class="nav-item" href="/emi">💳 EMI Calculator</a>
-        </div>
+    <form method="post">
+        <input type="text" name="expression" placeholder="e.g. 3 + 5 * 2" required>
+        <br>
+        <button type="submit">Calculate</button>
+    </form>
 
-        {% if result %}
-            <div class="result" style="margin-top: 30px; font-size: 20px;">Result: {{ result }}</div>
-        {% endif %}
+    {% if result %}
+        <h3>Result: {{ result }}</h3>
+    {% endif %}
+
+    <hr>
+
+    <div>
+        <h3>Other Modes:</h3>
+        <a href="/simple-interest">📈 Simple Interest</a>
+        <a href="/currency-compare">🌍 Currency Comparison</a>
+        <a href="/money-value">💰 Future Value Estimator</a>
+        <a href="/emi">💳 EMI Calculator</a>
+        <a href="/todo">📝 To-Do List</a>
+        <a href="/scientific">🔬 Scientific Calculator</a>
     </div>
-
-    <footer>
-        <p>&copy; 2025 All-in-One Calculator App | Developed by Tejaswy</p>
-    </footer>
 </body>
 </html>
