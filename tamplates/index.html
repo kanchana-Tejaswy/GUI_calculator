@@ -2,65 +2,112 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Multi-Mode Calculator</title>
+    <title>🧮 Basic Calculator</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 40px;
-            background-color: #f5f5f5;
             text-align: center;
+            background-color: #f2f2f2;
         }
         h1 {
+            margin-top: 20px;
             color: #333;
         }
-        form {
-            margin: 20px auto;
-            padding: 20px;
-            background-color: white;
-            width: 300px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px #ccc;
-        }
-        input, button {
-            padding: 10px;
-            margin: 10px 0;
-            width: 90%;
-            font-size: 16px;
-        }
-        a {
-            margin: 10px;
+        .calculator {
             display: inline-block;
-            text-decoration: none;
-            color: #007bff;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
         }
-        a:hover {
-            text-decoration: underline;
+        input[type="text"] {
+            width: 100%;
+            font-size: 20px;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+        }
+        .buttons button {
+            width: 60px;
+            height: 40px;
+            margin: 5px;
+            font-size: 18px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .buttons button:hover {
+            background-color: #45a049;
+        }
+        .nav-links {
+            margin-top: 20px;
+        }
+        .nav-links a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #333;
+        }
+        h3 {
+            color: darkblue;
         }
     </style>
 </head>
 <body>
-    <h1>🧮 Multi-Mode Calculator</h1>
+    <h1>🧮 Basic Calculator</h1>
+    <div class="calculator">
+        <form method="POST">
+            <input type="text" name="expression" id="expression" value="{{ request.form.expression if request.form.expression else '' }}" readonly>
+            <div class="buttons">
+                <!-- Number Buttons -->
+                <button type="button" onclick="append('7')">7</button>
+                <button type="button" onclick="append('8')">8</button>
+                <button type="button" onclick="append('9')">9</button>
+                <button type="button" onclick="append('/')">/</button><br>
 
-    <form method="post">
-        <input type="text" name="expression" placeholder="e.g. 3 + 5 * 2" required>
-        <br>
-        <button type="submit">Calculate</button>
-    </form>
+                <button type="button" onclick="append('4')">4</button>
+                <button type="button" onclick="append('5')">5</button>
+                <button type="button" onclick="append('6')">6</button>
+                <button type="button" onclick="append('')"></button><br>
 
-    {% if result %}
-        <h3>Result: {{ result }}</h3>
-    {% endif %}
+                <button type="button" onclick="append('1')">1</button>
+                <button type="button" onclick="append('2')">2</button>
+                <button type="button" onclick="append('3')">3</button>
+                <button type="button" onclick="append('-')">-</button><br>
 
-    <hr>
+                <button type="button" onclick="append('0')">0</button>
+                <button type="button" onclick="append('.')">.</button>
+                <button type="submit">=</button>
+                <button type="button" onclick="append('+')">+</button><br>
 
-    <div>
-        <h3>Other Modes:</h3>
-        <a href="/simple-interest">📈 Simple Interest</a>
-        <a href="/currency-compare">🌍 Currency Comparison</a>
-        <a href="/money-value">💰 Future Value Estimator</a>
-        <a href="/emi">💳 EMI Calculator</a>
-        <a href="/todo">📝 To-Do List</a>
-        <a href="/scientific">🔬 Scientific Calculator</a>
+                <button type="button" onclick="clearInput()" style="width: 255px;">Clear</button>
+            </div>
+        </form>
+
+        {% if result %}
+            <h3>Result: {{ result }}</h3>
+        {% endif %}
     </div>
+
+    <div class="nav-links">
+        <a href="/simple-interest">Simple Interest</a> |
+        <a href="/currency-compare">Currency Compare</a> |
+        <a href="/money-value">Future Value</a> |
+        <a href="/emi">EMI</a> |
+        <a href="/todo">To-Do List</a> |
+        <a href="/scientific">Scientific</a>
+    </div>
+
+    <script>
+        function append(value) {
+            document.getElementById('expression').value += value;
+        }
+        function clearInput() {
+            document.getElementById('expression').value = '';
+        }
+    </script>
 </body>
 </html>

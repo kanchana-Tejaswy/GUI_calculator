@@ -2,61 +2,101 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>📈 Simple Interest Calculator</title>
+    <title>Simple Interest Calculator</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f7f7f7;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #eef2f7;
+            color: #222;
             text-align: center;
-            padding: 40px;
-        }
-
-        form {
-            background-color: white;
-            display: inline-block;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-
-        input, button {
-            display: block;
-            margin: 15px auto;
-            padding: 10px;
-            width: 80%;
-            font-size: 16px;
-        }
-
-        a {
-            display: inline-block;
-            margin-top: 20px;
-            color: #007bff;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
+            padding: 20px;
         }
 
         h1 {
-            color: #444;
+            color: #0f172a;
+            margin-top: 20px;
+        }
+
+        .calculator {
+            background-color: #fff;
+            padding: 30px;
+            margin: 30px auto;
+            max-width: 400px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        input[type="number"] {
+            width: 90%;
+            padding: 12px;
+            margin: 10px 0;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+        }
+
+        button {
+            background-color: #1e3a8a;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #3749c5;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: green;
+        }
+
+        .nav-links {
+            margin-top: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            margin: 0 10px;
+            color: #1e3a8a;
+        }
+
+        .nav-links a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
+
     <h1>📈 Simple Interest Calculator</h1>
 
-    <form method="post">
-        <input type="number" name="principal" placeholder="Principal Amount (₹)" required>
-        <input type="number" name="rate" placeholder="Rate of Interest (%)" required>
-        <input type="number" name="time" placeholder="Time in years" required>
-        <button type="submit">Calculate</button>
-    </form>
+    <div class="calculator">
+        <form method="post">
+            <input type="number" name="principal" placeholder="Principal Amount (₹)" required step="0.01"><br>
+            <input type="number" name="rate" placeholder="Rate of Interest (%)" required step="0.01"><br>
+            <input type="number" name="time" placeholder="Time (in years)" required step="0.01"><br>
+            <button type="submit">Calculate Interest</button>
+        </form>
 
-    {% if result %}
-        <h3>{{ result }}</h3>
-    {% endif %}
+        {% if result %}
+            <div class="result">
+                <h3>Simple Interest: ₹{{ result }}</h3>
+            </div>
+        {% endif %}
+    </div>
 
-    <a href="/">← Back to Home</a>
+    <div class="nav-links">
+        <a href="/">🏠 Home</a> |
+        <a href="/currency-compare">🌍 Currency Compare</a> |
+        <a href="/money-value">⏳ Future Value</a> |
+        <a href="/emi">💳 EMI</a> |
+        <a href="/todo">✅ To-Do List</a> |
+        <a href="/scientific">🔬 Scientific</a>
+    </div>
+
 </body>
 </html>

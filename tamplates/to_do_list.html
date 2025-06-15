@@ -2,92 +2,130 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Bill To-Do List</title>
+    <title>✅ To-Do List</title>
     <style>
         body {
-            background-color: #edf2f7;
-            font-family: 'Segoe UI', sans-serif;
-            padding: 40px;
+            background-color: #f0f4f8;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             text-align: center;
+            color: #333;
         }
 
         .container {
-            background-color: white;
+            max-width: 600px;
+            margin: 40px auto;
+            background: #fff;
             padding: 30px;
-            margin: auto;
-            max-width: 500px;
             border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
         }
 
         h1 {
-            color: #2d3748;
+            color: #0f172a;
+            margin-bottom: 20px;
+        }
+
+        form {
+            margin-bottom: 20px;
         }
 
         input[type="text"] {
-            width: 80%;
-            padding: 10px;
-            margin: 10px 0;
+            width: 70%;
+            padding: 12px;
+            border: 2px solid #ccc;
             border-radius: 8px;
-            border: 1px solid #cbd5e0;
+            font-size: 16px;
         }
 
         button {
-            padding: 10px 25px;
-            background-color: #48bb78;
+            padding: 12px 18px;
+            font-size: 16px;
+            background-color: #1e3a8a;
             color: white;
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 16px;
+            margin-left: 8px;
         }
 
         button:hover {
-            background-color: #38a169;
+            background-color: #3749c5;
         }
 
         ul {
-            list-style: none;
+            list-style-type: none;
             padding: 0;
-            margin-top: 20px;
         }
 
         li {
-            background: #f7fafc;
-            padding: 10px;
-            margin: 5px auto;
-            width: 80%;
+            background: #e2e8f0;
+            margin: 8px 0;
+            padding: 12px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .remove-btn {
+            background-color: #dc2626;
+            padding: 6px 10px;
+            font-size: 14px;
             border-radius: 6px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border: none;
+            color: white;
+            cursor: pointer;
         }
 
-        a {
-            display: inline-block;
-            margin-top: 20px;
-            color: #3182ce;
+        .remove-btn:hover {
+            background-color: #b91c1c;
+        }
+
+        .nav-links {
+            margin-top: 25px;
+        }
+
+        .nav-links a {
             text-decoration: none;
+            color: #1e3a8a;
+            margin: 0 10px;
         }
 
-        a:hover {
+        .nav-links a:hover {
             text-decoration: underline;
         }
-
     </style>
 </head>
 <body>
+
     <div class="container">
-        <h1>📝 Bill To-Do List</h1>
-        <p>This is a placeholder UI for your bill tracking. You can upgrade it later with backend functionality.</p>
-        <form>
-            <input type="text" placeholder="Enter a bill item (e.g., Pay electricity)" disabled>
-            <button type="button" disabled>Add</button>
+        <h1>📝 To-Do List</h1>
+
+        <form method="POST">
+            <input type="text" name="task" placeholder="Add your task" required>
+            <button type="submit">Add</button>
         </form>
 
         <ul>
-            <li>Example: Recharge mobile 📱</li>
-            <li>Example: Pay electricity bill 💡</li>
+            {% for i, task in enumerate(tasks) %}
+            <li>
+                {{ task }}
+                <form method="POST" action="/todo/delete/{{ i }}" style="margin:0;">
+                    <button class="remove-btn" type="submit">Remove</button>
+                </form>
+            </li>
+            {% endfor %}
         </ul>
-        <a href="/">← Back to Home</a>
+
+        <div class="nav-links">
+            <a href="/">🏠 Home</a> |
+            <a href="/simple-interest">📈 Interest</a> |
+            <a href="/money-value">⏳ Future Value</a> |
+            <a href="/emi">💳 EMI</a> |
+            <a href="/currency-compare">🌍 Currency</a> |
+            <a href="/scientific">🔬 Scientific</a>
+        </div>
     </div>
+
 </body>
 </html>

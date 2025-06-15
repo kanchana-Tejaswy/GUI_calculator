@@ -6,75 +6,97 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f8fb;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 40px;
+            background-color: #f5f7fa;
+            color: #333;
+            text-align: center;
+            padding: 20px;
         }
 
         h1 {
-            color: #2c3e50;
+            color: #1e3a8a;
         }
 
-        form {
-            background-color: #fff;
+        .calculator {
+            background: #fff;
             padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 12px;
             max-width: 400px;
-            width: 100%;
+            margin: 40px auto;
+            box-shadow: 0 0 12px rgba(0,0,0,0.1);
         }
 
-        input, button {
+        input[type="number"] {
             width: 90%;
+            padding: 12px;
             margin: 10px 0;
-            padding: 10px;
             font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
         }
 
         button {
-            background-color: #28a745;
+            background-color: #1e3a8a;
             color: white;
+            padding: 12px 25px;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
+            font-size: 16px;
             cursor: pointer;
+            margin-top: 10px;
         }
 
         button:hover {
-            background-color: #218838;
+            background-color: #3749c5;
         }
 
-        a {
+        .result {
             margin-top: 20px;
-            display: inline-block;
-            color: #007bff;
+            font-size: 18px;
+            color: green;
+        }
+
+        .nav-links {
+            margin-top: 30px;
+        }
+
+        .nav-links a {
             text-decoration: none;
+            margin: 0 10px;
+            color: #1e3a8a;
         }
 
-        a:hover {
+        .nav-links a:hover {
             text-decoration: underline;
-        }
-
-        h3 {
-            margin-top: 20px;
-            color: #333;
         }
     </style>
 </head>
 <body>
+
     <h1>⏳ Future Value Estimator</h1>
-    <form method="post">
-        <input type="number" name="amount" step="0.01" placeholder="Current Amount" required>
-        <input type="number" name="inflation" step="0.01" placeholder="Inflation Rate (%)" required>
-        <input type="number" name="years" placeholder="Years" required>
-        <button type="submit">Calculate</button>
-    </form>
 
-    {% if result %}
-        <h3>{{ result }}</h3>
-    {% endif %}
+    <div class="calculator">
+        <form method="post">
+            <input type="number" name="amount" placeholder="Current Amount (₹)" step="0.01" required><br>
+            <input type="number" name="inflation" placeholder="Inflation Rate (%)" step="0.01" required><br>
+            <input type="number" name="years" placeholder="Number of Years" step="1" required><br>
+            <button type="submit">Calculate</button>
+        </form>
 
-    <a href="/">← Back to Home</a>
+        {% if result %}
+            <div class="result">
+                <h3>Future Value: ₹{{ result }}</h3>
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="nav-links">
+        <a href="/">🏠 Home</a> |
+        <a href="/simple-interest">📈 Simple Interest</a> |
+        <a href="/currency-compare">🌍 Currency Compare</a> |
+        <a href="/emi">💳 EMI</a> |
+        <a href="/todo">✅ To-Do List</a> |
+        <a href="/scientific">🔬 Scientific</a>
+    </div>
+
 </body>
 </html>
