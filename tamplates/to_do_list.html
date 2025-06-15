@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bill Payment To-Do</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 10px;
+            background-color: #1e1e1e;
+            margin: 10px auto;
+            width: 70%;
+            border-radius: 10px;
+            box-shadow: 0 0 8px #00FF88;
+        }
+    </style>
+</head>
+<body>
+    <h1>📝 Bill Payment To-Do List</h1>
+    <form method="post">
+        <input type="text" name="task" placeholder="Enter bill/task to remember" required>
+        <input type="submit" value="Add Task">
+    </form>
+
+    {% if tasks %}
+    <h2>Upcoming Payments</h2>
+    <ul>
+        {% for task in tasks %}
+        <li>{{ task }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <br><a href="/">← Back to Home</a>
+</body>
+</html>
