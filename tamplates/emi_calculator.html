@@ -7,7 +7,7 @@
     <style>
         body {
             background-color: #1e1e1e;
-            font-family: 'Poppins', sans-serif;
+            font-family: Arial, sans-serif;
             color: #00FF88;
             display: flex;
             justify-content: center;
@@ -20,7 +20,7 @@
             padding: 30px;
             border-radius: 15px;
             box-shadow: 0 0 15px #00FF88;
-            width: 100%;
+            width: 90%;
             max-width: 500px;
         }
 
@@ -29,54 +29,64 @@
             margin-bottom: 20px;
         }
 
-        input[type="number"] {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border-radius: 10px;
-            border: none;
-            background-color: #1e1e1e;
-            color: #00FF88;
-            font-size: 1rem;
+        label {
+            display: block;
+            margin-top: 10px;
+            color: #ccc;
         }
 
-        button {
+        input[type="number"] {
             width: 100%;
-            padding: 12px;
+            padding: 8px;
+            border-radius: 8px;
+            border: 1px solid #00FF88;
+            background-color: #1e1e1e;
+            color: #00FF88;
+            margin-top: 5px;
+        }
+
+        .btn {
+            margin-top: 20px;
+            width: 100%;
+            padding: 10px;
             background-color: #00FF88;
             color: #000;
             border: none;
             border-radius: 8px;
-            font-size: 1rem;
-            font-weight: bold;
-            margin-top: 10px;
+            font-size: 16px;
             cursor: pointer;
         }
 
-        button:hover {
-            background-color: #00cc66;
+        .btn:hover {
+            background-color: #00cc70;
         }
 
         .result {
+            margin-top: 20px;
             text-align: center;
-            margin-top: 15px;
-            font-size: 1.2rem;
-            font-weight: bold;
+            font-size: 18px;
             color: #00FF88;
         }
     </style>
 </head>
 <body>
     <div class="emi-container">
-        <h2>EMI Calculator</h2>
+        <h2>💳 EMI Calculator</h2>
         <form method="POST">
-            <input type="number" name="principal" step="0.01" placeholder="Principal Loan Amount (₹)" required>
-            <input type="number" name="rate" step="0.01" placeholder="Annual Interest Rate (%)" required>
-            <input type="number" name="months" step="1" placeholder="Loan Duration (Months)" required>
-            <button type="submit">Calculate EMI</button>
+            <label for="principal">Principal Amount (₹):</label>
+            <input type="number" name="principal" step="any" required>
+
+            <label for="rate">Annual Interest Rate (%):</label>
+            <input type="number" name="rate" step="any" required>
+
+            <label for="months">Loan Term (Months):</label>
+            <input type="number" name="months" required>
+
+            <button type="submit" class="btn">Calculate EMI</button>
         </form>
+
         {% if result %}
-        <div class="result">{{ result }}</div>
+            <div class="result">{{ result }}</div>
         {% endif %}
     </div>
 </body>
