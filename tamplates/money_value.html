@@ -2,101 +2,111 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Future Money Value</title>
+    <title>⏳ Future Value Calculator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f7fa;
-            color: #333;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to right, #f0f4f8, #d9e2ec);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #1e293b;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 90%;
             text-align: center;
-            padding: 20px;
         }
 
         h1 {
-            color: #1e3a8a;
+            font-size: 2rem;
+            color: #0f172a;
+            margin-bottom: 20px;
         }
 
-        .calculator {
-            background: #fff;
-            padding: 25px;
-            border-radius: 12px;
-            max-width: 400px;
-            margin: 40px auto;
-            box-shadow: 0 0 12px rgba(0,0,0,0.1);
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
 
         input[type="number"] {
-            width: 90%;
             padding: 12px;
-            margin: 10px 0;
-            font-size: 16px;
-            border: 2px solid #ccc;
+            border: 1px solid #cbd5e1;
             border-radius: 8px;
+            font-size: 1rem;
+            background-color: #f8fafc;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #2563eb;
         }
 
         button {
-            background-color: #1e3a8a;
+            padding: 12px;
+            background-color: #2563eb;
             color: white;
-            padding: 12px 25px;
             border: none;
             border-radius: 8px;
-            font-size: 16px;
+            font-size: 1rem;
             cursor: pointer;
-            margin-top: 10px;
+            transition: background-color 0.3s ease;
         }
 
         button:hover {
-            background-color: #3749c5;
+            background-color: #1e40af;
         }
 
         .result {
             margin-top: 20px;
-            font-size: 18px;
-            color: green;
+            font-size: 1.2rem;
+            color: #059669;
         }
 
-        .nav-links {
+        a.back-link {
+            display: inline-block;
             margin-top: 30px;
-        }
-
-        .nav-links a {
             text-decoration: none;
-            margin: 0 10px;
-            color: #1e3a8a;
+            color: #2563eb;
+            font-size: 0.95rem;
+            padding: 8px 14px;
+            border-radius: 8px;
+            background-color: #f1f5f9;
+            transition: background-color 0.3s ease;
         }
 
-        .nav-links a:hover {
-            text-decoration: underline;
+        a.back-link:hover {
+            background-color: #e2e8f0;
         }
     </style>
 </head>
 <body>
-
-    <h1>⏳ Future Value Estimator</h1>
-
-    <div class="calculator">
+    <div class="container">
+        <h1>⏳ Future Money Value Calculator</h1>
         <form method="post">
-            <input type="number" name="amount" placeholder="Current Amount (₹)" step="0.01" required><br>
-            <input type="number" name="inflation" placeholder="Inflation Rate (%)" step="0.01" required><br>
-            <input type="number" name="years" placeholder="Number of Years" step="1" required><br>
-            <button type="submit">Calculate</button>
+            <input type="number" name="amount" placeholder="Current Amount (₹)" step="any" required>
+            <input type="number" name="inflation" placeholder="Inflation Rate (%)" step="any" required>
+            <input type="number" name="years" placeholder="Years" required>
+            <button type="submit">Calculate Future Value</button>
         </form>
 
         {% if result %}
             <div class="result">
-                <h3>Future Value: ₹{{ result }}</h3>
+                Future Value: ₹ {{ result }}
             </div>
         {% endif %}
-    </div>
 
-    <div class="nav-links">
-        <a href="/">🏠 Home</a> |
-        <a href="/simple-interest">📈 Simple Interest</a> |
-        <a href="/currency-compare">🌍 Currency Compare</a> |
-        <a href="/emi">💳 EMI</a> |
-        <a href="/todo">✅ To-Do List</a> |
-        <a href="/scientific">🔬 Scientific</a>
+        <a href="/" class="back-link">← Back to Home</a>
     </div>
-
 </body>
 </html>

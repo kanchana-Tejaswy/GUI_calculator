@@ -6,112 +6,97 @@
     <style>
         body {
             font-family: 'Segoe UI', sans-serif;
-            background: #f4f6f8;
-            color: #333;
+            background: #f0f4f8;
             margin: 0;
-            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
 
         .container {
-            max-width: 700px;
-            margin: 50px auto;
-            padding: 30px;
-            background: #ffffff;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
-            border-radius: 15px;
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
         }
 
         h1 {
-            color: #1e3a8a;
-            text-align: center;
-            margin-bottom: 30px;
+            color: #1f2937;
+            margin-bottom: 25px;
         }
 
-        form input {
+        input {
             width: 100%;
             padding: 12px;
-            margin: 10px 0;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
+            margin: 12px 0;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 1rem;
+            box-sizing: border-box;
         }
 
         button {
             width: 100%;
-            background: #1e3a8a;
-            color: #fff;
             padding: 12px;
+            font-size: 1rem;
+            background-color: #2563eb;
+            color: white;
             border: none;
-            border-radius: 10px;
-            font-size: 18px;
+            border-radius: 8px;
             cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
         }
 
         button:hover {
-            background: #2a4fe5;
+            background-color: #1d4ed8;
         }
 
-        .result-box {
-            margin-top: 30px;
-            background: #e0f2fe;
-            padding: 20px;
-            border-radius: 12px;
-            text-align: center;
-        }
-
-        .result-box h2 {
-            margin: 0 0 10px 0;
-            font-size: 24px;
-            color: #0f172a;
-        }
-
-        .result-box p {
-            font-size: 18px;
-            margin: 5px 0;
-        }
-
-        .nav-links {
-            text-align: center;
-            margin-top: 30px;
-        }
-
-        .nav-links a {
-            margin: 0 10px;
-            color: #1e3a8a;
-            text-decoration: none;
+        .result {
+            margin-top: 20px;
+            color: #059669;
+            font-size: 1.3rem;
             font-weight: bold;
         }
 
-        .nav-links a:hover {
-            text-decoration: underline;
+        .footer-links {
+            margin-top: 30px;
+            font-size: 0.95rem;
+        }
+
+        .footer-links a {
+            color: #334155;
+            text-decoration: none;
+            margin: 0 8px;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>💳 EMI Calculator</h1>
-        <form method="POST">
-            <input type="number" name="principal" step="0.01" placeholder="Enter Principal (₹)" required>
-            <input type="number" name="rate" step="0.01" placeholder="Annual Interest Rate (%)" required>
-            <input type="number" name="months" placeholder="Loan Duration (Months)" required>
+
+        <form method="post">
+            <input type="number" name="principal" placeholder="Loan Amount (₹)" step="any" required>
+            <input type="number" name="rate" placeholder="Annual Interest Rate (%)" step="any" required>
+            <input type="number" name="months" placeholder="Loan Tenure (in months)" required>
             <button type="submit">Calculate EMI</button>
         </form>
 
         {% if result %}
-        <div class="result-box">
-            <h2>Monthly EMI: ₹{{ result.emi }}</h2>
-            <p>Total Interest: ₹{{ result.interest }}</p>
-            <p>Total Payment: ₹{{ result.total }}</p>
-        </div>
+            <div class="result">Monthly EMI: ₹{{ result }}</div>
         {% endif %}
 
-        <div class="nav-links">
+        <div class="footer-links">
             <a href="/">🏠 Home</a>
-            <a href="/simple-interest">📈 Interest</a>
-            <a href="/money-value">⏳ Future Value</a>
+            <a href="/basic">🧮 Basic Calc</a>
+            <a href="/simple-interest">📈 Simple Interest</a>
             <a href="/currency-compare">💱 Currency</a>
-            <a href="/todo">✅ To-Do</a>
-            <a href="/scientific">🧠 Scientific</a>
+            <a href="/money-value">⏳ Future Value</a>
+            <a href="/todo">📝 To-Do</a>
         </div>
     </div>
 </body>

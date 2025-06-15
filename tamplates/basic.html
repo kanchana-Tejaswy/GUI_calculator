@@ -2,87 +2,133 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>GYI Calculator</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>🧮 Basic Calculator</title>
     <style>
         body {
-            background-color: #121212;
-            color: #00FF88;
-            font-family: 'Poppins', sans-serif;
-            padding: 20px;
+            font-family: 'Segoe UI', sans-serif;
+            background: #f1f5f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .calculator-container {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
             text-align: center;
+            width: 90%;
+            max-width: 400px;
         }
 
-        .nav-container {
-            text-align: right;
+        h1 {
             margin-bottom: 20px;
-            position: relative;
+            color: #1e293b;
         }
 
-        .menu-icon {
-            font-size: 24px;
-            cursor: pointer;
-            color: #00FF88;
-            padding: 10px;
-        }
-
-        .dropdown {
-            display: none;
-            background-color: #1e1e1e;
-            border: 1px solid #00FF88;
+        input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.2rem;
+            border: 2px solid #cbd5e1;
             border-radius: 10px;
-            position: absolute;
-            top: 40px;
-            right: 0;
-            text-align: left;
-            z-index: 100;
+            margin-bottom: 20px;
+            box-sizing: border-box;
         }
 
-        .dropdown a {
-            display: block;
-            padding: 10px 20px;
-            color: #00FF88;
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 15px;
+            font-size: 1.1rem;
+            border: none;
+            background-color: #2563eb;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #1d4ed8;
+        }
+
+        .nav-links {
+            margin-top: 15px;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a {
+            margin: 0 5px;
             text-decoration: none;
+            color: #0f172a;
         }
 
-        .dropdown a:hover {
-            background-color: #00FF88;
-            color: #000;
+        .result {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #10b981;
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
+    <div class="calculator-container">
+        <h1>🧮 Basic Calculator</h1>
 
-    <div class="nav-container">
-        <div class="menu-icon" onclick="toggleDropdown()">☰</div>
-        <div class="dropdown" id="dropdownMenu">
-            <a href="/">🧮 Basic Calculator</a>
-            <a href="/scientific">🔬 Scientific Calculator</a>
-            <a href="/simple-interest">📈 Simple Interest</a>
-            <a href="/money-value">⏳ Future Value</a>
-            <a href="/currency-compare">🌍 Currency Compare</a>
-            <a href="/todo">📝 To-Do / Bills</a>
-            <a href="/emi">💳 EMI Calculator</a>
+        {% if result %}
+            <div class="result">Result: {{ result }}</div>
+        {% endif %}
+
+        <form method="post">
+            <input type="text" name="expression" placeholder="Enter expression like 5+3" required>
+
+            <div class="button-grid">
+                <button type="button" onclick="append('7')">7</button>
+                <button type="button" onclick="append('8')">8</button>
+                <button type="button" onclick="append('9')">9</button>
+                <button type="button" onclick="append('+')">+</button>
+
+                <button type="button" onclick="append('4')">4</button>
+                <button type="button" onclick="append('5')">5</button>
+                <button type="button" onclick="append('6')">6</button>
+                <button type="button" onclick="append('-')">-</button>
+
+                <button type="button" onclick="append('1')">1</button>
+                <button type="button" onclick="append('2')">2</button>
+                <button type="button" onclick="append('3')">3</button>
+                <button type="button" onclick="append('')"></button>
+
+                <button type="button" onclick="append('0')">0</button>
+                <button type="button" onclick="append('.')">.</button>
+                <button type="submit">=</button>
+                <button type="button" onclick="append('/')">/</button>
+            </div>
+        </form>
+
+        <div class="nav-links">
+            <a href="/simple-interest">📈 Simple Interest</a> |
+            <a href="/currency-compare">💱 Currency Compare</a> |
+            <a href="/money-value">⏳ Future Value</a><br>
+            <a href="/emi">💳 EMI</a> |
+            <a href="/todo">✅ To-Do List</a> |
+            <a href="/scientific">🔬 Scientific</a>
         </div>
     </div>
 
-    {% block content %}{% endblock %}
-
     <script>
-        function toggleDropdown() {
-            var menu = document.getElementById("dropdownMenu");
-            menu.style.display = menu.style.display === "block" ? "none" : "block";
-        }
-
-        window.onclick = function(event) {
-            if (!event.target.matches('.menu-icon')) {
-                var dropdown = document.getElementById("dropdownMenu");
-                if (dropdown.style.display === "block") {
-                    dropdown.style.display = "none";
-                }
-            }
+        function append(value) {
+            const input = document.querySelector('input[name="expression"]');
+            input.value += value;
         }
     </script>
-
 </body>
 </html>

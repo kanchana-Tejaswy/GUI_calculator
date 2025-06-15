@@ -2,78 +2,130 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>🌍 Currency Comparison</title>
+    <title>💱 Currency Converter</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #eef2f3;
+            font-family: 'Segoe UI', sans-serif;
+            background: #f8fafc;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .converter-container {
+            background: #ffffff;
             padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
         }
 
         h1 {
-            color: #333;
+            color: #1e293b;
+            margin-bottom: 25px;
         }
 
-        form {
-            background-color: #fff;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.1);
-            max-width: 400px;
-            width: 100%;
-        }
-
-        input, button {
-            width: 90%;
+        input, select {
+            padding: 12px;
             margin: 10px 0;
-            padding: 10px;
-            font-size: 16px;
+            width: 100%;
+            font-size: 1rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            box-sizing: border-box;
         }
 
         button {
-            background-color: #007bff;
+            background-color: #2563eb;
             color: white;
             border: none;
-            border-radius: 5px;
+            padding: 12px 20px;
+            font-size: 1rem;
+            border-radius: 8px;
             cursor: pointer;
+            margin-top: 15px;
+            transition: background-color 0.3s ease;
         }
 
         button:hover {
-            background-color: #0056b3;
+            background-color: #1e40af;
         }
 
-        a {
+        .result {
             margin-top: 20px;
-            display: inline-block;
-            color: #007bff;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #10b981;
+        }
+
+        .footer-links {
+            margin-top: 30px;
+            font-size: 0.95rem;
+        }
+
+        .footer-links a {
+            color: #334155;
             text-decoration: none;
+            margin: 0 8px;
         }
 
-        a:hover {
-            text-decoration: underline;
+        .swap-btn {
+            margin-top: 10px;
+            background-color: #64748b;
         }
 
-        h3 {
-            margin-top: 20px;
-            color: #222;
+        .swap-btn:hover {
+            background-color: #475569;
         }
     </style>
 </head>
 <body>
-    <h1>🌍 Currency Converter</h1>
-    <form method="post">
-        <input type="number" step="0.01" name="amount" placeholder="Amount" required>
-        <input type="number" step="0.0001" name="rate" placeholder="Exchange Rate (e.g., 83.25)" required>
-        <button type="submit">Convert</button>
-    </form>
+    <div class="converter-container">
+        <h1>💱 Currency Converter</h1>
 
-    {% if result %}
-        <h3>{{ result }}</h3>
-    {% endif %}
+        <form method="post">
+            <input type="number" name="amount" placeholder="Enter amount" step="any" required>
 
-    <a href="/">← Back to Home</a>
+            <select name="from_currency" required>
+                <option value="INR">🇮🇳 INR</option>
+                <option value="USD">🇺🇸 USD</option>
+                <option value="EUR">🇪🇺 EUR</option>
+                <option value="JPY">🇯🇵 JPY</option>
+                <option value="GBP">🇬🇧 GBP</option>
+                <!-- Add more if needed -->
+            </select>
+
+            <select name="to_currency" required>
+                <option value="USD">🇺🇸 USD</option>
+                <option value="INR">🇮🇳 INR</option>
+                <option value="EUR">🇪🇺 EUR</option>
+                <option value="JPY">🇯🇵 JPY</option>
+                <option value="GBP">🇬🇧 GBP</option>
+            </select>
+
+            <button type="submit">Convert</button>
+        </form>
+
+        <form method="post" style="margin-top: 5px;">
+            <input type="hidden" name="swap" value="1">
+            <button class="swap-btn" type="submit">🔁 Swap Currencies</button>
+        </form>
+
+        {% if result %}
+            <div class="result">Converted Amount: {{ result }}</div>
+        {% endif %}
+
+        <div class="footer-links">
+            <a href="/">🏠 Home</a>
+            <a href="/basic">🧮 Basic Calc</a>
+            <a href="/simple-interest">📈 Simple Interest</a>
+            <a href="/money-value">⏳ Future Value</a>
+            <a href="/emi">💳 EMI</a>
+        </div>
+    </div>
 </body>
 </html>

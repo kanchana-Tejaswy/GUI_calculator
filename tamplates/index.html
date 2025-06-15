@@ -2,112 +2,110 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>🧮 Basic Calculator</title>
+    <title>🧮 Smart Calculator Hub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to right, #eef2f3, #8e9eab);
+            color: #1e293b;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
             text-align: center;
-            background-color: #f2f2f2;
+            animation: fadeIn 1s ease-in-out;
         }
+
+        @keyframes fadeIn {
+            from {opacity: 0; transform: translateY(-20px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+
         h1 {
-            margin-top: 20px;
-            color: #333;
+            font-size: 2.2rem;
+            color: #0f172a;
+            margin-bottom: 20px;
         }
-        .calculator {
-            display: inline-block;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 30px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+
+        p {
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+            color: #334155;
         }
-        input[type="text"] {
-            width: 100%;
-            font-size: 20px;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 2px solid #ccc;
-            border-radius: 5px;
-        }
-        .buttons button {
-            width: 60px;
-            height: 40px;
-            margin: 5px;
-            font-size: 18px;
-            border: none;
-            background-color: #4CAF50;
+
+        .main-buttons button {
+            background-color: #2563eb;
             color: white;
-            border-radius: 5px;
+            border: none;
+            padding: 14px 24px;
+            font-size: 1rem;
+            border-radius: 10px;
+            margin: 10px;
             cursor: pointer;
+            transition: background 0.3s ease;
         }
-        .buttons button:hover {
-            background-color: #45a049;
+
+        .main-buttons button:hover {
+            background-color: #1e40af;
         }
+
         .nav-links {
-            margin-top: 20px;
+            margin-top: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
         }
+
         .nav-links a {
-            margin: 0 10px;
             text-decoration: none;
-            color: #333;
+            color: #2563eb;
+            background-color: #f1f5f9;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: background-color 0.3s;
         }
-        h3 {
-            color: darkblue;
+
+        .nav-links a:hover {
+            background-color: #e2e8f0;
         }
     </style>
 </head>
 <body>
-    <h1>🧮 Basic Calculator</h1>
-    <div class="calculator">
-        <form method="POST">
-            <input type="text" name="expression" id="expression" value="{{ request.form.expression if request.form.expression else '' }}" readonly>
-            <div class="buttons">
-                <!-- Number Buttons -->
-                <button type="button" onclick="append('7')">7</button>
-                <button type="button" onclick="append('8')">8</button>
-                <button type="button" onclick="append('9')">9</button>
-                <button type="button" onclick="append('/')">/</button><br>
+    <div class="container">
+        <h1>🧮 Smart Calculator Hub</h1>
+        <p>Choose a tool to get started:</p>
 
-                <button type="button" onclick="append('4')">4</button>
-                <button type="button" onclick="append('5')">5</button>
-                <button type="button" onclick="append('6')">6</button>
-                <button type="button" onclick="append('')"></button><br>
+        <div class="main-buttons">
+            <form action="/basic">
+                <button type="submit">🔢 Basic Calculator</button>
+            </form>
+            <form action="/simple-interest">
+                <button type="submit">📈 Simple Interest</button>
+            </form>
+            <form action="/currency-compare">
+                <button type="submit">💱 Currency Converter</button>
+            </form>
+        </div>
 
-                <button type="button" onclick="append('1')">1</button>
-                <button type="button" onclick="append('2')">2</button>
-                <button type="button" onclick="append('3')">3</button>
-                <button type="button" onclick="append('-')">-</button><br>
-
-                <button type="button" onclick="append('0')">0</button>
-                <button type="button" onclick="append('.')">.</button>
-                <button type="submit">=</button>
-                <button type="button" onclick="append('+')">+</button><br>
-
-                <button type="button" onclick="clearInput()" style="width: 255px;">Clear</button>
-            </div>
-        </form>
-
-        {% if result %}
-            <h3>Result: {{ result }}</h3>
-        {% endif %}
+        <div class="nav-links">
+            <a href="/money-value">⏳ Future Money Value</a>
+            <a href="/emi">💳 EMI Calculator</a>
+            <a href="/todo">📝 To-Do List</a>
+            <a href="/scientific">🔬 Scientific Mode</a>
+        </div>
     </div>
-
-    <div class="nav-links">
-        <a href="/simple-interest">Simple Interest</a> |
-        <a href="/currency-compare">Currency Compare</a> |
-        <a href="/money-value">Future Value</a> |
-        <a href="/emi">EMI</a> |
-        <a href="/todo">To-Do List</a> |
-        <a href="/scientific">Scientific</a>
-    </div>
-
-    <script>
-        function append(value) {
-            document.getElementById('expression').value += value;
-        }
-        function clearInput() {
-            document.getElementById('expression').value = '';
-        }
-    </script>
 </body>
 </html>

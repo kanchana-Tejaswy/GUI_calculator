@@ -1,9 +1,75 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>404 - Page Not Found</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #f8fafc;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
 
-{% block title %}404 Not Found{% endblock %}
+        .error-box {
+            text-align: center;
+            background: white;
+            padding: 50px 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 450px;
+            width: 90%;
+        }
 
-{% block content %}
-<h2>Oops! Page Not Found</h2>
-<p>The page you're looking for doesn't exist or might have moved.</p>
-<a href="/" class="btn">🔙 Go to Home</a>
-{% endblock %}
+        .error-box h1 {
+            font-size: 5rem;
+            margin: 0;
+            color: #ef4444;
+        }
+
+        .error-box h2 {
+            margin-top: 10px;
+            font-size: 1.8rem;
+            color: #1e293b;
+        }
+
+        .error-box p {
+            color: #475569;
+            margin: 20px 0;
+            font-size: 1rem;
+        }
+
+        .error-box a {
+            text-decoration: none;
+            background: #1d4ed8;
+            color: white;
+            padding: 12px 25px;
+            font-size: 1rem;
+            border-radius: 10px;
+            display: inline-block;
+            transition: background 0.3s;
+        }
+
+        .error-box a:hover {
+            background: #2563eb;
+        }
+
+        .emoji {
+            font-size: 4rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="error-box">
+        <div class="emoji">😵</div>
+        <h1>404</h1>
+        <h2>Oops! Page Not Found</h2>
+        <p>The page you are looking for doesn’t exist or has been moved.</p>
+        <a href="/">🏠 Back to Home</a>
+    </div>
+</body>
+</html>
