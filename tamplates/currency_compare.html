@@ -2,47 +2,49 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Currency Comparison - GYI</title>
+    <title>Currency Converter</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <style>
-        .form-container {
-            max-width: 450px;
-            margin: 40px auto;
-            background-color: #1e1e1e;
+        body {
+            background-color: #121212;
+            color: #00FF88;
+            font-family: 'Poppins', sans-serif;
             padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 0 15px #00FF88;
         }
 
         h1 {
             text-align: center;
-            color: #00FF88;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background-color: #1e1e1e;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px #00FF88;
         }
 
         input[type="number"] {
             width: 90%;
-            padding: 12px;
-            margin: 10px auto;
-            display: block;
-            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 8px;
             border: none;
             background-color: #000;
             color: #00FF88;
-            font-size: 1rem;
         }
 
         input[type="submit"] {
             background-color: #00FF88;
             color: black;
-            padding: 12px 20px;
+            padding: 10px 20px;
             border-radius: 8px;
             border: none;
             font-weight: bold;
             cursor: pointer;
             transition: 0.3s;
-            display: block;
-            margin: 20px auto;
-            width: 50%;
         }
 
         input[type="submit"]:hover {
@@ -50,13 +52,10 @@
         }
 
         .result {
-            text-align: center;
             margin-top: 20px;
-            color: #00FF88;
             font-size: 1.2rem;
         }
 
-        /* Dropdown Navigation */
         .dropdown {
             position: absolute;
             top: 20px;
@@ -113,11 +112,11 @@
         </div>
     </div>
 
-    <div class="form-container">
+    <div class="container">
         <h1>🌍 Currency Comparison</h1>
         <form method="POST">
-            <input type="number" name="amount" placeholder="Enter Amount (₹)" required>
-            <input type="number" name="rate" placeholder="Exchange Rate" step="0.0001" required>
+            <input type="number" name="amount" placeholder="Amount in ₹" required>
+            <input type="number" name="rate" placeholder="Conversion Rate (e.g., 0.012 for USD)" step="0.0001" required>
             <input type="submit" value="Convert">
         </form>
 
