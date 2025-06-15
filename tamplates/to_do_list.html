@@ -2,40 +2,151 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Bill Payment To-Do</title>
+    <title>Bill To-Do List - GYI</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <style>
+        body {
+            background-color: #121212;
+            color: #00FF88;
+            font-family: 'Poppins', sans-serif;
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .todo-container {
+            max-width: 500px;
+            margin: auto;
+            background-color: #1e1e1e;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px #00FF88;
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            background-color: #000;
+            color: #00FF88;
+            margin-bottom: 15px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #00FF88;
+            color: black;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #00cc66;
+        }
+
         ul {
             list-style-type: none;
             padding: 0;
         }
 
         li {
+            background-color: #000;
+            margin-bottom: 10px;
             padding: 10px;
+            border-radius: 8px;
+            color: #00FF88;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+        }
+
+        .dropbtn {
+            font-size: 24px;
+            background: none;
+            border: none;
+            color: #00FF88;
+            cursor: pointer;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
             background-color: #1e1e1e;
-            margin: 10px auto;
-            width: 70%;
+            min-width: 180px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
             border-radius: 10px;
-            box-shadow: 0 0 8px #00FF88;
+        }
+
+        .dropdown-content a {
+            color: #00FF88;
+            padding: 10px 14px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #00FF88;
+            color: #000;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
         }
     </style>
 </head>
 <body>
-    <h1>📝 Bill Payment To-Do List</h1>
-    <form method="post">
-        <input type="text" name="task" placeholder="Enter bill/task to remember" required>
-        <input type="submit" value="Add Task">
-    </form>
+    <div class="dropdown">
+        <button class="dropbtn">⋮</button>
+        <div class="dropdown-content">
+            <a href="/">Basic Calculator</a>
+            <a href="/scientific">Scientific Calculator</a>
+            <a href="/simple-interest">Simple Interest</a>
+            <a href="/money-value">Money Value</a>
+            <a href="/currency-compare">Currency Comparison</a>
+            <a href="/todo">To-Do Bill List</a>
+            <a href="/emi">EMI Calculator</a>
+        </div>
+    </div>
 
-    {% if tasks %}
-    <h2>Upcoming Payments</h2>
-    <ul>
-        {% for task in tasks %}
-        <li>{{ task }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
+    <div class="todo-container">
+        <h1>📝 Bill To-Do List</h1>
+        <input type="text" id="taskInput" placeholder="Add new bill task...">
+        <button onclick="addTask()">Add</button>
+        <ul id="taskList"></ul>
+    </div>
 
-    <br><a href="/">← Back to Home</a>
+    <script>
+        function addTask() {
+            const taskInput = document.getElementById('taskInput');
+            const taskText = taskInput.value.trim();
+            if (taskText === "") return;
+
+            const li = document.createElement("li");
+            li.textContent = taskText;
+
+            const deleteBtn = document.createElement("button");
+            deleteBtn.textContent = "❌";
+            deleteBtn.style.marginLeft = "10px";
+            deleteBtn.onclick = () => li.remove();
+
+            li.appendChild(deleteBtn);
+            document.getElementById("taskList").appendChild(li);
+            taskInput.value = "";
+        }
+    </script>
 </body>
 </html>

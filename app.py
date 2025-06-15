@@ -2,7 +2,6 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-# 🧮 Home - Basic Calculator
 @app.route("/", methods=["GET", "POST"])
 def index():
     result = ""
@@ -14,12 +13,10 @@ def index():
             result = "Invalid Expression"
     return render_template("index.html", result=result)
 
-# 🔬 Scientific Calculator (Placeholder)
 @app.route("/scientific")
 def scientific():
     return render_template("scientific.html")
 
-# 📈 Simple Interest Calculator
 @app.route("/simple-interest", methods=["GET", "POST"])
 def simple_interest():
     result = ""
@@ -34,7 +31,6 @@ def simple_interest():
             result = "Invalid Input"
     return render_template("simple_interest.html", result=result)
 
-# ⏳ Future Money Value (Placeholder)
 @app.route("/money-value", methods=["GET", "POST"])
 def money_value():
     result = ""
@@ -49,7 +45,6 @@ def money_value():
             result = "Invalid Input"
     return render_template("money_value.html", result=result)
 
-# 🌍 Currency Comparison (Placeholder)
 @app.route("/currency-compare", methods=["GET", "POST"])
 def currency_compare():
     result = ""
@@ -63,12 +58,10 @@ def currency_compare():
             result = "Invalid Input"
     return render_template("currency_compare.html", result=result)
 
-# 📝 Bill To-Do List (Placeholder)
-@app.route("/todo", methods=["GET", "POST"])
+@app.route("/todo")
 def todo():
     return render_template("todo.html")
 
-# 💳 EMI Calculator (Placeholder)
 @app.route("/emi", methods=["GET", "POST"])
 def emi():
     result = ""
@@ -77,12 +70,11 @@ def emi():
             principal = float(request.form["principal"])
             rate = float(request.form["rate"]) / (12 * 100)
             months = int(request.form["months"])
-            emi = (principal * rate * ((1 + rate) ** months)) / (((1 + rate) ** months) - 1)
+            emi = (principal * rate * ((1 + rate)*months)) / (((1 + rate)*months) - 1)
             result = f"Monthly EMI: ₹{emi:.2f}"
         except:
             result = "Invalid Input"
     return render_template("emi.html", result=result)
 
-# 🚀 Run Server
 if __name__ == "_main_":
     app.run(debug=True)

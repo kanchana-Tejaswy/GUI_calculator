@@ -1,64 +1,40 @@
-s<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>GYI Calculator</title>
+    <title>GYI Calculator - Basic Calculator</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>🧮 GYI Calculator</h1>
+    <header>
+        <h1>GYI Calculator</h1>
 
-    <!-- 3 Dots Dropdown -->
-    <div class="dropdown">
-        <button class="dropbtn">⋮</button>
-        <div class="dropdown-content">
-            <a href="/scientific">Scientific Calculator</a>
-            <a href="/simple-interest">Simple Interest</a>
-            <a href="/money-value">Money Value</a>
-            <a href="/currency-compare">Currency Compare</a>
-            <a href="/todo">Bill Payment To-Do</a>
-            <a href="/emi">EMI Calculator</a>
-        </div>
-    </div>
-
-    <!-- Basic Calculator -->
-    <div class="calculator">
-        <form method="POST">
-            <input type="text" name="expression" placeholder="Enter expression" required>
-            <div class="keypad">
-                <button type="button" onclick="insert('1')">1</button>
-                <button type="button" onclick="insert('2')">2</button>
-                <button type="button" onclick="insert('3')">3</button>
-                <button type="button" onclick="insert('+')">+</button><br>
-
-                <button type="button" onclick="insert('4')">4</button>
-                <button type="button" onclick="insert('5')">5</button>
-                <button type="button" onclick="insert('6')">6</button>
-                <button type="button" onclick="insert('-')">-</button><br>
-
-                <button type="button" onclick="insert('7')">7</button>
-                <button type="button" onclick="insert('8')">8</button>
-                <button type="button" onclick="insert('9')">9</button>
-                <button type="button" onclick="insert('')"></button><br>
-
-                <button type="button" onclick="insert('0')">0</button>
-                <button type="button" onclick="insert('.')">.</button>
-                <button type="submit">=</button>
-                <button type="button" onclick="insert('/')">/</button>
+        <!-- Three-dot menu -->
+        <div class="dropdown">
+            <button class="dropbtn">⋮</button>
+            <div class="dropdown-content">
+                <a href="/">Basic Calculator</a>
+                <a href="/scientific">Scientific Calculator</a>
+                <a href="/simple-interest">Simple Interest</a>
+                <a href="/money-value">Money Value</a>
+                <a href="/currency-compare">Currency Comparison</a>
+                <a href="/todo">To-Do Bill List</a>
+                <a href="/emi">EMI Calculator</a>
             </div>
-        </form>
-        {% if result %}
-        <div class="result-box">
-            <h2>{{ result }}</h2>
         </div>
-        {% endif %}
-    </div>
+    </header>
 
-    <script>
-        function insert(value) {
-            const input = document.querySelector('input[name="expression"]');
-            input.value += value;
-        }
-    </script>
+    <main>
+        <h2>🧮 Basic Calculator</h2>
+        <form method="POST">
+            <input type="text" name="expression" placeholder="Enter expression (e.g. 5+3*2)" required>
+            <br>
+            <input type="submit" value="Calculate">
+        </form>
+
+        {% if result %}
+            <h3>Result: {{ result }}</h3>
+        {% endif %}
+    </main>
 </body>
 </html>

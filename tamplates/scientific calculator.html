@@ -2,22 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Scientific Calculator</title>
+    <title>Scientific Calculator - GYI</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <style>
-        body {
-            background-color: #121212;
-            font-family: 'Poppins', sans-serif;
-            color: #00FF88;
-            text-align: center;
-        }
-
         .calc-container {
             max-width: 420px;
-            margin: 50px auto;
+            margin: 40px auto;
             background-color: #1e1e1e;
             border-radius: 15px;
-            padding: 20px;
+            padding: 25px;
             box-shadow: 0 0 15px #00FF88;
         }
 
@@ -37,57 +30,70 @@
         .btn {
             width: 23%;
             margin: 1%;
-            padding: 14px;
+            padding: 15px;
             font-size: 1rem;
             border-radius: 10px;
             background-color: #1e1e1e;
             color: #00FF88;
             border: 1px solid #00FF88;
             cursor: pointer;
-            transition: 0.2s;
         }
 
         .btn:hover {
             background-color: #00FF88;
             color: #000;
         }
-
-        h1 {
-            margin-top: 20px;
-        }
     </style>
 </head>
 <body>
-    <h1>Scientific Calculator</h1>
+    <h1>🔬 Scientific Calculator</h1>
+    
+    <!-- 3 Dots Menu -->
+    <div class="dropdown">
+        <button class="dropbtn">⋮</button>
+        <div class="dropdown-content">
+            <a href="/">Basic Calculator</a>
+            <a href="/scientific">Scientific Calculator</a>
+            <a href="/simple-interest">Simple Interest</a>
+            <a href="/money-value">Money Value</a>
+            <a href="/currency-compare">Currency Comparison</a>
+            <a href="/todo">To-Do Bill List</a>
+            <a href="/emi">EMI Calculator</a>
+        </div>
+    </div>
+
     <div class="calc-container">
-        <input type="text" id="display" readonly placeholder="0">
+        <input type="text" id="display" readonly>
 
         <div>
+            <!-- First row -->
             <button class="btn" onclick="clearDisplay()">C</button>
             <button class="btn" onclick="backspace()">←</button>
             <button class="btn" onclick="append('(')">(</button>
             <button class="btn" onclick="append(')')">)</button>
 
+            <!-- Numbers and operators -->
             <button class="btn" onclick="append('7')">7</button>
             <button class="btn" onclick="append('8')">8</button>
             <button class="btn" onclick="append('9')">9</button>
-            <button class="btn" onclick="append('/')">÷</button>
+            <button class="btn" onclick="append('/')">/</button>
 
             <button class="btn" onclick="append('4')">4</button>
             <button class="btn" onclick="append('5')">5</button>
             <button class="btn" onclick="append('6')">6</button>
-            <button class="btn" onclick="append('*')">×</button>
+            <button class="btn" onclick="append('')"></button>
 
             <button class="btn" onclick="append('1')">1</button>
             <button class="btn" onclick="append('2')">2</button>
             <button class="btn" onclick="append('3')">3</button>
-            <button class="btn" onclick="append('-')">−</button>
+            <button class="btn" onclick="append('-')">-</button>
 
             <button class="btn" onclick="append('0')">0</button>
             <button class="btn" onclick="append('.')">.</button>
             <button class="btn" onclick="calculate()">=</button>
             <button class="btn" onclick="append('+')">+</button>
 
+            <!-- Scientific functions -->
             <button class="btn" onclick="append('Math.sqrt(')">√</button>
             <button class="btn" onclick="append('Math.sin(Math.PI/180*')">sin</button>
             <button class="btn" onclick="append('Math.cos(Math.PI/180*')">cos</button>
@@ -110,13 +116,14 @@
         }
 
         function backspace() {
-            const val = document.getElementById('display').value;
+            let val = document.getElementById('display').value;
             document.getElementById('display').value = val.slice(0, -1);
         }
 
         function calculate() {
             try {
-                const result = eval(document.getElementById('display').value);
+                let expression = document.getElementById('display').value;
+                let result = eval(expression);
                 document.getElementById('display').value = result;
             } catch (e) {
                 document.getElementById('display').value = "Error";

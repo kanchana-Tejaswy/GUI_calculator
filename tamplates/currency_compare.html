@@ -2,29 +2,128 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Currency Comparison</title>
+    <title>Currency Comparison - GYI</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .form-container {
+            max-width: 450px;
+            margin: 40px auto;
+            background-color: #1e1e1e;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px #00FF88;
+        }
+
+        h1 {
+            text-align: center;
+            color: #00FF88;
+        }
+
+        input[type="number"] {
+            width: 90%;
+            padding: 12px;
+            margin: 10px auto;
+            display: block;
+            border-radius: 10px;
+            border: none;
+            background-color: #000;
+            color: #00FF88;
+            font-size: 1rem;
+        }
+
+        input[type="submit"] {
+            background-color: #00FF88;
+            color: black;
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            display: block;
+            margin: 20px auto;
+            width: 50%;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #00cc66;
+        }
+
+        .result {
+            text-align: center;
+            margin-top: 20px;
+            color: #00FF88;
+            font-size: 1.2rem;
+        }
+
+        /* Dropdown Navigation */
+        .dropdown {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+        }
+
+        .dropbtn {
+            font-size: 24px;
+            background: none;
+            border: none;
+            color: #00FF88;
+            cursor: pointer;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: #1e1e1e;
+            min-width: 180px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 10px;
+        }
+
+        .dropdown-content a {
+            color: #00FF88;
+            padding: 10px 14px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #00FF88;
+            color: #000;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
 </head>
 <body>
-    <h1>🌍 Currency Comparison</h1>
+    <div class="dropdown">
+        <button class="dropbtn">⋮</button>
+        <div class="dropdown-content">
+            <a href="/">Basic Calculator</a>
+            <a href="/scientific">Scientific Calculator</a>
+            <a href="/simple-interest">Simple Interest</a>
+            <a href="/money-value">Money Value</a>
+            <a href="/currency-compare">Currency Comparison</a>
+            <a href="/todo">To-Do Bill List</a>
+            <a href="/emi">EMI Calculator</a>
+        </div>
+    </div>
 
-    <form method="POST">
-        <input type="number" name="amount" placeholder="Enter amount in base currency" step="any" required><br>
-        <input type="number" name="rate" placeholder="Enter conversion rate (e.g. 1 USD = 83 INR → enter 83)" step="any" required><br>
-        <input type="submit" value="Convert">
-    </form>
+    <div class="form-container">
+        <h1>🌍 Currency Comparison</h1>
+        <form method="POST">
+            <input type="number" name="amount" placeholder="Enter Amount (₹)" required>
+            <input type="number" name="rate" placeholder="Exchange Rate" step="0.0001" required>
+            <input type="submit" value="Convert">
+        </form>
 
-    {% if result %}
-        <h2 style="margin-top: 20px;">{{ result }}</h2>
-    {% endif %}
-
-    <div class="menu">
-        <a href="/">🏠 Basic Calculator</a>
-        <a href="/scientific">🔬 Scientific</a>
-        <a href="/simple-interest">📈 Simple Interest</a>
-        <a href="/money-value">📉 Money Value</a>
-        <a href="/todo">📝 To-Do</a>
-        <a href="/emi">💳 EMI Calculator</a>
+        {% if result %}
+            <div class="result">{{ result }}</div>
+        {% endif %}
     </div>
 </body>
 </html>
