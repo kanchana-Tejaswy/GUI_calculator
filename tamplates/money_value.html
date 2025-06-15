@@ -3,81 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <title>Money Value Estimator</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <style>
         body {
-            background-color: #1e1e1e;
-            font-family: 'Poppins', sans-serif;
-            color: #00FF88;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .value-container {
-            background-color: #121212;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 0 15px #00FF88;
-            width: 100%;
-            max-width: 500px;
-        }
-
-        h2 {
+            background-color: #f7fafc;
+            font-family: 'Segoe UI', sans-serif;
+            padding: 40px;
             text-align: center;
-            margin-bottom: 20px;
+        }
+
+        .box {
+            background-color: white;
+            padding: 30px;
+            margin: auto;
+            max-width: 500px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #1a202c;
         }
 
         input[type="number"] {
-            width: 100%;
-            padding: 12px;
+            width: 80%;
+            padding: 10px;
             margin: 10px 0;
-            border-radius: 10px;
-            border: none;
-            background-color: #1e1e1e;
-            color: #00FF88;
-            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 8px;
         }
 
         button {
-            width: 100%;
-            padding: 12px;
-            background-color: #00FF88;
-            color: #000;
+            padding: 10px 25px;
+            background-color: #38b2ac;
+            color: white;
             border: none;
             border-radius: 8px;
-            font-size: 1rem;
-            font-weight: bold;
-            margin-top: 10px;
             cursor: pointer;
+            font-size: 16px;
         }
 
         button:hover {
-            background-color: #00cc66;
+            background-color: #319795;
         }
 
         .result {
-            text-align: center;
-            margin-top: 15px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #00FF88;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #2d3748;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            color: #3182ce;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <div class="value-container">
-        <h2>Money Value Estimator</h2>
+    <div class="box">
+        <h1>⏳ Money Value Estimator</h1>
         <form method="POST">
-            <input type="number" name="amount" step="0.01" placeholder="Present Value (₹)" required>
-            <input type="number" name="inflation" step="0.01" placeholder="Annual Inflation Rate (%)" required>
-            <input type="number" name="years" placeholder="Years Into Future" required>
-            <button type="submit">Estimate Future Value</button>
+            <input type="number" step="any" name="amount" placeholder="Amount (₹)" required><br>
+            <input type="number" step="any" name="inflation" placeholder="Inflation Rate (%)" required><br>
+            <input type="number" step="any" name="years" placeholder="Number of Years" required><br>
+            <button type="submit">Calculate</button>
         </form>
+
         {% if result %}
-        <div class="result">{{ result }}</div>
+            <div class="result">{{ result }}</div>
         {% endif %}
+        <a href="/">← Back to Home</a>
     </div>
 </body>
 </html>
