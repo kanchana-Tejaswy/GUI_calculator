@@ -1,109 +1,125 @@
-{% extends "base.html" %}
-
-{% block title %}Scientific Calculator{% endblock %}
-
-{% block content %}
-<h2>🔬 Scientific Calculator</h2>
-
-<div class="container">
-    <input type="text" id="display" readonly class="display" />
-
-    <div class="buttons">
-        <!-- First Row -->
-        <button onclick="clearDisplay()">C</button>
-        <button onclick="deleteLast()">⌫</button>
-        <button onclick="append('(')">(</button>
-        <button onclick="append(')')">)</button>
-
-        <!-- Second Row -->
-        <button onclick="append('7')">7</button>
-        <button onclick="append('8')">8</button>
-        <button onclick="append('9')">9</button>
-        <button onclick="append('/')">÷</button>
-
-        <!-- Third Row -->
-        <button onclick="append('4')">4</button>
-        <button onclick="append('5')">5</button>
-        <button onclick="append('6')">6</button>
-        <button onclick="append('*')">×</button>
-
-        <!-- Fourth Row -->
-        <button onclick="append('1')">1</button>
-        <button onclick="append('2')">2</button>
-        <button onclick="append('3')">3</button>
-        <button onclick="append('-')">−</button>
-
-        <!-- Fifth Row -->
-        <button onclick="append('0')">0</button>
-        <button onclick="append('.')">.</button>
-        <button onclick="calculate()">=</button>
-        <button onclick="append('+')">+</button>
-
-        <!-- Sixth Row - Scientific -->
-        <button onclick="append('Math.sin(')">sin</button>
-        <button onclick="append('Math.cos(')">cos</button>
-        <button onclick="append('Math.tan(')">tan</button>
-        <button onclick="append('Math.sqrt(')">√</button>
-
-        <button onclick="append('Math.log10(')">log</button>
-        <button onclick="append('Math.log(')">ln</button>
-        <button onclick="append('Math.exp(')">exp</button>
-        <button onclick="append('')">^</button>
-    </div>
-
-    <a href="/" class="btn">🔙 Back to Home</a>
-</div>
-
-<style>
-    .container {
-        max-width: 400px;
-        margin: auto;
-        text-align: center;
-    }
-
-    .display {
-        width: 100%;
-        padding: 15px;
-        font-size: 1.2rem;
-        margin-bottom: 10px;
-    }
-
-    .buttons button {
-        width: 23%;
-        padding: 10px;
-        margin: 2px;
-        font-size: 1rem;
-        border: none;
-        background-color: #f2f2f2;
-        cursor: pointer;
-    }
-
-    .buttons button:hover {
-        background-color: #ccc;
-    }
-</style>
-
-<script>
-    let display = document.getElementById("display");
-
-    function append(value) {
-        display.value += value;
-    }
-
-    function clearDisplay() {
-        display.value = "";
-    }
-
-    function deleteLast() {
-        display.value = display.value.slice(0, -1);
-    }
-
-    function calculate() {
-        try {
-            display.value = eval(display.value);
-        } catch (e) {
-            display.value = "Error";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scientific Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
         }
-    }
-</script>
-{% endblock %}
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="text"] {
+            width: 100%;
+            font-size: 24px;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 60px);
+            grid-gap: 10px;
+            justify-content: center;
+        }
+
+        button {
+            padding: 15px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background: #3498db;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #2980b9;
+        }
+
+        .wide {
+            grid-column: span 2;
+        }
+
+        h3 {
+            margin-top: 20px;
+            color: #2c3e50;
+        }
+
+        a {
+            margin-top: 20px;
+            display: inline-block;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔬 Scientific Calculator</h1>
+    <form method="post">
+        <input type="text" name="expression" placeholder="Enter expression" required readonly id="display">
+
+        <div class="button-grid">
+            <button type="submit" name="expression" value="7">7</button>
+            <button type="submit" name="expression" value="8">8</button>
+            <button type="submit" name="expression" value="9">9</button>
+            <button type="submit" name="expression" value="/">÷</button>
+
+            <button type="submit" name="expression" value="4">4</button>
+            <button type="submit" name="expression" value="5">5</button>
+            <button type="submit" name="expression" value="6">6</button>
+            <button type="submit" name="expression" value="*">×</button>
+
+            <button type="submit" name="expression" value="1">1</button>
+            <button type="submit" name="expression" value="2">2</button>
+            <button type="submit" name="expression" value="3">3</button>
+            <button type="submit" name="expression" value="-">−</button>
+
+            <button type="submit" name="expression" value="0">0</button>
+            <button type="submit" name="expression" value=".">.</button>
+            <button type="submit" name="expression" value="+">+</button>
+            <button type="submit" name="expression" value="">^</button>
+
+            <button type="submit" name="expression" value="sin">sin</button>
+            <button type="submit" name="expression" value="cos">cos</button>
+            <button type="submit" name="expression" value="tan">tan</button>
+            <button type="submit" name="expression" value="log">log</button>
+
+            <button type="submit" name="expression" value="sqrt">√</button>
+            <button type="submit" name="expression" value="exp">e^x</button>
+            <button type="submit" name="expression" value="(">(</button>
+            <button type="submit" name="expression" value=")">)</button>
+
+            <button type="submit" name="expression" value="clear" class="wide">Clear</button>
+            <button type="submit" name="expression" value="=" class="wide">=</button>
+        </div>
+    </form>
+
+    {% if result %}
+        <h3>Result: {{ result }}</h3>
+    {% endif %}
+
+    <a href="/">← Back to Home</a>
+</body>
+</html>
