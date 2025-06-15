@@ -2,66 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>To-Do Bill List - GYI</title>
+    <title>To-Do Bill List</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <style>
         body {
             background-color: #121212;
-            color: #00FF88;
             font-family: 'Poppins', sans-serif;
+            color: #00FF88;
             padding: 30px;
         }
 
         h1 {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
-        .form-container {
+        .container {
             max-width: 500px;
             margin: auto;
             background-color: #1e1e1e;
             padding: 25px;
             border-radius: 15px;
             box-shadow: 0 0 15px #00FF88;
+            text-align: center;
         }
 
-        ul {
-            list-style-type: none;
-            padding-left: 0;
-        }
-
-        li {
-            background-color: #000;
-            color: #00FF88;
-            padding: 10px;
-            margin-bottom: 8px;
-            border-radius: 8px;
-        }
-
-        input[type="text"] {
-            width: 90%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border-radius: 8px;
-            border: none;
-            background-color: #000;
-            color: #00FF88;
-        }
-
-        input[type="submit"] {
-            background-color: #00FF88;
-            color: black;
-            padding: 10px 20px;
-            border-radius: 8px;
-            border: none;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #00cc66;
+        p {
+            font-size: 1rem;
+            color: #aaa;
         }
 
         .dropdown {
@@ -120,19 +88,10 @@
         </div>
     </div>
 
-    <div class="form-container">
-        <h1>📋 Bill Payment To-Do List</h1>
-        <form method="POST">
-            <input type="text" name="task" placeholder="Enter your bill task (e.g. Pay electricity bill)">
-            <input type="submit" value="Add Task">
-        </form>
-
-        <ul>
-            <li>✅ Electricity Bill - ₹1200</li>
-            <li>✅ Internet Bill - ₹999</li>
-            <li>📅 Rent - ₹5000 (Due 5th July)</li>
-            <li>📅 Mobile Recharge - ₹299</li>
-        </ul>
+    <div class="container">
+        <h1>📝 To-Do Bill List</h1>
+        <p>This is a placeholder page. You can add functionality here to track and manage bills or tasks.</p>
+        <p>Future features may include adding, editing, and removing bill entries.</p>
     </div>
 </body>
 </html>

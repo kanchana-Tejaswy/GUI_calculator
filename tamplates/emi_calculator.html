@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>EMI Calculator - GYI</title>
+    <title>EMI Calculator</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <style>
         body {
@@ -14,9 +14,10 @@
 
         h1 {
             text-align: center;
+            margin-bottom: 20px;
         }
 
-        .form-container {
+        .container {
             max-width: 500px;
             margin: auto;
             background-color: #1e1e1e;
@@ -53,7 +54,6 @@
         .result {
             margin-top: 20px;
             font-size: 1.2rem;
-            font-weight: bold;
         }
 
         .dropdown {
@@ -112,14 +112,15 @@
         </div>
     </div>
 
-    <div class="form-container">
+    <div class="container">
         <h1>💳 EMI Calculator</h1>
         <form method="POST">
-            <input type="number" name="principal" placeholder="Principal Amount (₹)" required><br>
-            <input type="number" name="rate" placeholder="Annual Interest Rate (%)" step="0.01" required><br>
-            <input type="number" name="months" placeholder="Loan Duration (in months)" required><br>
+            <input type="number" name="principal" placeholder="Loan Amount (₹)" required>
+            <input type="number" name="rate" placeholder="Annual Interest Rate (%)" step="0.01" required>
+            <input type="number" name="months" placeholder="Loan Tenure (in months)" required>
             <input type="submit" value="Calculate EMI">
         </form>
+
         {% if result %}
             <div class="result">{{ result }}</div>
         {% endif %}
