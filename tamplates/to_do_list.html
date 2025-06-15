@@ -6,82 +6,47 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <style>
         body {
-            font-family: 'Poppins', sans-serif;
             background-color: #1e1e1e;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: #00FF88;
-            text-align: center;
-            padding: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
 
         .todo-container {
-            max-width: 500px;
-            margin: auto;
             background-color: #121212;
-            padding: 20px;
+            padding: 30px;
             border-radius: 15px;
             box-shadow: 0 0 15px #00FF88;
+            width: 90%;
+            max-width: 500px;
         }
 
         h2 {
+            text-align: center;
             margin-bottom: 20px;
         }
 
-        input[type="text"] {
-            padding: 12px;
-            width: 80%;
-            margin: 10px 0;
-            border-radius: 10px;
-            border: none;
-            background-color: #1e1e1e;
+        p {
+            text-align: center;
+            color: #aaaaaa;
+        }
+
+        .coming-soon {
+            font-size: 1.2rem;
             color: #00FF88;
-            font-size: 1rem;
-        }
-
-        button {
-            padding: 10px 20px;
-            background-color: #00FF88;
-            color: #000;
-            border: none;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        button:hover {
-            background-color: #00cc66;
-        }
-
-        ul {
-            list-style-type: none;
-            padding-left: 0;
-            margin-top: 20px;
-        }
-
-        li {
-            padding: 10px;
-            margin: 5px 0;
-            background-color: #1e1e1e;
-            border: 1px solid #00FF88;
-            border-radius: 10px;
+            text-align: center;
+            margin-top: 30px;
         }
     </style>
 </head>
 <body>
     <div class="todo-container">
-        <h2>Bill To-Do List</h2>
-        <form method="POST">
-            <input type="text" name="task" placeholder="Enter your bill task (e.g., Pay electricity bill)">
-            <button type="submit">Add Task</button>
-        </form>
-
-        <ul>
-            <li>💡 Example Task: Pay electricity bill</li>
-            <li>📱 Recharge mobile</li>
-            <li>🏠 Pay rent</li>
-            <li>📚 Buy college books</li>
-        </ul>
-        <p style="font-size: 0.9rem; color: #aaa;">(Functionality can be extended using Flask sessions or a database.)</p>
+        <h2>📋 To-Do List</h2>
+        <p>Task manager feature is under development.</p>
+        <div class="coming-soon">Coming Soon...</div>
     </div>
 </body>
 </html>
