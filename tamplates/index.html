@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GYI Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>📱 GYI Multi Calculator</h1>
+    <div class="menu">
+        <a href="/">Basic Calculator</a>
+        <a href="/scientific">Scientific Calculator</a>
+        <a href="/simple-interest">Simple Interest</a>
+        <a href="/money-value">Money Value</a>
+        <a href="/currency-compare">Currency Comparison</a>
+        <a href="/todo">To-Do Bill Tracker</a>
+        <a href="/emi">EMI Calculator</a>
+    </div>
+    <div class="content">
+        <form method="POST">
+            <input type="text" name="expression" placeholder="2+2">
+            <input type="submit" value="Calculate">
+        </form>
+        {% if result %}
+        <h2>Result: {{ result }}</h2>
+        {% endif %}
+    </div>
+</body>
+</html>
