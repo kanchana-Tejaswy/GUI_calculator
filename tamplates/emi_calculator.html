@@ -70,9 +70,9 @@
     <div class="emi-container">
         <h2>EMI Calculator</h2>
         <form method="POST">
-            <input type="number" name="principal" step="0.01" placeholder="Loan Amount (₹)" required>
+            <input type="number" name="principal" step="0.01" placeholder="Principal Loan Amount (₹)" required>
             <input type="number" name="rate" step="0.01" placeholder="Annual Interest Rate (%)" required>
-            <input type="number" name="months" placeholder="Loan Duration (in months)" required>
+            <input type="number" name="months" step="1" placeholder="Loan Duration (Months)" required>
             <button type="submit">Calculate EMI</button>
         </form>
         {% if result %}
