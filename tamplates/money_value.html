@@ -5,120 +5,58 @@
     <title>Money Value Estimator</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <style>
-        body {
-            background-color: #121212;
-            color: #00FF88;
-            font-family: 'Poppins', sans-serif;
-            padding: 30px;
-        }
-
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .container {
-            max-width: 500px;
-            margin: auto;
+        .calc-container {
+            max-width: 400px;
+            margin: 30px auto;
             background-color: #1e1e1e;
-            padding: 25px;
             border-radius: 15px;
+            padding: 20px;
             box-shadow: 0 0 15px #00FF88;
         }
 
-        input[type="number"] {
-            width: 90%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border-radius: 8px;
-            border: none;
-            background-color: #000;
+        h2 {
+            margin-bottom: 20px;
             color: #00FF88;
         }
 
-        input[type="submit"] {
-            background-color: #00FF88;
-            color: black;
-            padding: 10px 20px;
-            border-radius: 8px;
+        input, button {
+            width: 90%;
+            padding: 12px;
+            margin: 10px auto;
+            border-radius: 10px;
             border: none;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
+            background-color: #1e1e1e;
+            color: #00FF88;
+            font-size: 1rem;
+            display: block;
         }
 
-        input[type="submit"]:hover {
+        button {
+            background-color: #00FF88;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
             background-color: #00cc66;
         }
 
         .result {
             margin-top: 20px;
-            font-size: 1.2rem;
-        }
-
-        .dropdown {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-        }
-
-        .dropbtn {
-            font-size: 24px;
-            background: none;
-            border: none;
             color: #00FF88;
-            cursor: pointer;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            right: 0;
-            background-color: #1e1e1e;
-            min-width: 180px;
-            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-            z-index: 1;
-            border-radius: 10px;
-        }
-
-        .dropdown-content a {
-            color: #00FF88;
-            padding: 10px 14px;
-            text-decoration: none;
-            display: block;
-        }
-
-        .dropdown-content a:hover {
-            background-color: #00FF88;
-            color: #000;
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <div class="dropdown">
-        <button class="dropbtn">⋮</button>
-        <div class="dropdown-content">
-            <a href="/">Basic Calculator</a>
-            <a href="/scientific">Scientific Calculator</a>
-            <a href="/simple-interest">Simple Interest</a>
-            <a href="/money-value">Money Value</a>
-            <a href="/currency-compare">Currency Comparison</a>
-            <a href="/todo">To-Do Bill List</a>
-            <a href="/emi">EMI Calculator</a>
-        </div>
-    </div>
-
-    <div class="container">
-        <h1>💸 Future Money Value</h1>
+    <div class="calc-container">
+        <h2>Money Value Estimator</h2>
         <form method="POST">
             <input type="number" name="amount" placeholder="Current Amount (₹)" required>
-            <input type="number" name="inflation" placeholder="Inflation Rate (%)" required>
-            <input type="number" name="years" placeholder="Years Ahead" required>
-            <input type="submit" value="Calculate">
+            <input type="number" name="inflation" placeholder="Inflation Rate (%)" step="0.01" required>
+            <input type="number" name="years" placeholder="Number of Years" required>
+            <button type="submit">Estimate Future Value</button>
         </form>
 
         {% if result %}
