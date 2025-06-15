@@ -2,46 +2,69 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>To-Do List</title>
+    <title>Bill To-Do List</title>
     <style>
         body {
-            background-color: #f3f4f6;
-            font-family: Arial, sans-serif;
+            background-color: #edf2f7;
+            font-family: 'Segoe UI', sans-serif;
             padding: 40px;
             text-align: center;
         }
 
         .container {
-            background-color: #ffffff;
+            background-color: white;
             padding: 30px;
-            max-width: 500px;
             margin: auto;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
         h1 {
-            color: #333;
+            color: #2d3748;
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #cbd5e0;
+        }
+
+        button {
+            padding: 10px 25px;
+            background-color: #48bb78;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #38a169;
         }
 
         ul {
-            list-style-type: none;
+            list-style: none;
             padding: 0;
-            text-align: left;
+            margin-top: 20px;
         }
 
         li {
-            background: #e5e7eb;
-            margin: 8px 0;
+            background: #f7fafc;
             padding: 10px;
-            border-radius: 5px;
-            font-size: 16px;
+            margin: 5px auto;
+            width: 80%;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
 
         a {
             display: inline-block;
             margin-top: 20px;
-            color: #2563eb;
+            color: #3182ce;
             text-decoration: none;
         }
 
@@ -49,21 +72,20 @@
             text-decoration: underline;
         }
 
-        .coming-soon {
-            color: #555;
-            font-size: 18px;
-            margin-top: 30px;
-        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>📝 To-Do List</h1>
-        <div class="coming-soon">Task saving feature coming soon!</div>
+        <h1>📝 Bill To-Do List</h1>
+        <p>This is a placeholder UI for your bill tracking. You can upgrade it later with backend functionality.</p>
+        <form>
+            <input type="text" placeholder="Enter a bill item (e.g., Pay electricity)" disabled>
+            <button type="button" disabled>Add</button>
+        </form>
+
         <ul>
-            <li>💼 Add EMI payment reminder</li>
-            <li>📊 Track savings progress</li>
-            <li>🛍 Record monthly expenses</li>
+            <li>Example: Recharge mobile 📱</li>
+            <li>Example: Pay electricity bill 💡</li>
         </ul>
         <a href="/">← Back to Home</a>
     </div>
