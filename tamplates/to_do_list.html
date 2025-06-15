@@ -2,96 +2,86 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>To-Do Bill List</title>
+    <title>To-Do List</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <style>
         body {
-            background-color: #121212;
             font-family: 'Poppins', sans-serif;
+            background-color: #1e1e1e;
             color: #00FF88;
+            text-align: center;
             padding: 30px;
         }
 
-        h1 {
-            text-align: center;
-            margin-bottom: 25px;
-        }
-
-        .container {
+        .todo-container {
             max-width: 500px;
             margin: auto;
-            background-color: #1e1e1e;
-            padding: 25px;
+            background-color: #121212;
+            padding: 20px;
             border-radius: 15px;
             box-shadow: 0 0 15px #00FF88;
-            text-align: center;
         }
 
-        p {
-            font-size: 1rem;
-            color: #aaa;
+        h2 {
+            margin-bottom: 20px;
         }
 
-        .dropdown {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-        }
-
-        .dropbtn {
-            font-size: 24px;
-            background: none;
-            border: none;
-            color: #00FF88;
-            cursor: pointer;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            right: 0;
-            background-color: #1e1e1e;
-            min-width: 180px;
-            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-            z-index: 1;
+        input[type="text"] {
+            padding: 12px;
+            width: 80%;
+            margin: 10px 0;
             border-radius: 10px;
-        }
-
-        .dropdown-content a {
+            border: none;
+            background-color: #1e1e1e;
             color: #00FF88;
-            padding: 10px 14px;
-            text-decoration: none;
-            display: block;
+            font-size: 1rem;
         }
 
-        .dropdown-content a:hover {
+        button {
+            padding: 10px 20px;
             background-color: #00FF88;
             color: #000;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
         }
 
-        .dropdown:hover .dropdown-content {
-            display: block;
+        button:hover {
+            background-color: #00cc66;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin-top: 20px;
+        }
+
+        li {
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #1e1e1e;
+            border: 1px solid #00FF88;
+            border-radius: 10px;
         }
     </style>
 </head>
 <body>
-    <div class="dropdown">
-        <button class="dropbtn">⋮</button>
-        <div class="dropdown-content">
-            <a href="/">Basic Calculator</a>
-            <a href="/scientific">Scientific Calculator</a>
-            <a href="/simple-interest">Simple Interest</a>
-            <a href="/money-value">Money Value</a>
-            <a href="/currency-compare">Currency Comparison</a>
-            <a href="/todo">To-Do Bill List</a>
-            <a href="/emi">EMI Calculator</a>
-        </div>
-    </div>
+    <div class="todo-container">
+        <h2>Bill To-Do List</h2>
+        <form method="POST">
+            <input type="text" name="task" placeholder="Enter your bill task (e.g., Pay electricity bill)">
+            <button type="submit">Add Task</button>
+        </form>
 
-    <div class="container">
-        <h1>📝 To-Do Bill List</h1>
-        <p>This is a placeholder page. You can add functionality here to track and manage bills or tasks.</p>
-        <p>Future features may include adding, editing, and removing bill entries.</p>
+        <ul>
+            <li>💡 Example Task: Pay electricity bill</li>
+            <li>📱 Recharge mobile</li>
+            <li>🏠 Pay rent</li>
+            <li>📚 Buy college books</li>
+        </ul>
+        <p style="font-size: 0.9rem; color: #aaa;">(Functionality can be extended using Flask sessions or a database.)</p>
     </div>
 </body>
 </html>
