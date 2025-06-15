@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EMI Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>💳 EMI Calculator</h1>
+    <form method="POST">
+        <input type="number" name="principal" step="0.01" placeholder="Loan Amount (₹)" required><br>
+        <input type="number" name="rate" step="0.01" placeholder="Annual Interest Rate (%)" required><br>
+        <input type="number" name="months" placeholder="Loan Duration (in months)" required><br>
+        <input type="submit" value="Calculate EMI">
+    </form>
+
+    {% if result %}
+        <h2>{{ result }}</h2>
+    {% endif %}
+
+    <br><a href="/">← Back to Home</a>
+</body>
+</html>
