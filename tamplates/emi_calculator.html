@@ -5,36 +5,51 @@
     <title>EMI Calculator</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <style>
-        .calc-container {
-            max-width: 400px;
-            margin: 30px auto;
+        body {
             background-color: #1e1e1e;
+            font-family: 'Poppins', sans-serif;
+            color: #00FF88;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .emi-container {
+            background-color: #121212;
+            padding: 30px;
             border-radius: 15px;
-            padding: 20px;
             box-shadow: 0 0 15px #00FF88;
+            width: 100%;
+            max-width: 500px;
         }
 
         h2 {
+            text-align: center;
             margin-bottom: 20px;
-            color: #00FF88;
         }
 
-        input, button {
-            width: 90%;
+        input[type="number"] {
+            width: 100%;
             padding: 12px;
-            margin: 10px auto;
+            margin: 10px 0;
             border-radius: 10px;
             border: none;
             background-color: #1e1e1e;
             color: #00FF88;
             font-size: 1rem;
-            display: block;
         }
 
         button {
+            width: 100%;
+            padding: 12px;
             background-color: #00FF88;
             color: #000;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
             font-weight: bold;
+            margin-top: 10px;
             cursor: pointer;
         }
 
@@ -43,24 +58,25 @@
         }
 
         .result {
-            margin-top: 20px;
-            color: #00FF88;
+            text-align: center;
+            margin-top: 15px;
+            font-size: 1.2rem;
             font-weight: bold;
+            color: #00FF88;
         }
     </style>
 </head>
 <body>
-    <div class="calc-container">
+    <div class="emi-container">
         <h2>EMI Calculator</h2>
         <form method="POST">
-            <input type="number" name="principal" placeholder="Loan Amount (₹)" required>
-            <input type="number" name="rate" placeholder="Annual Interest Rate (%)" step="0.01" required>
-            <input type="number" name="months" placeholder="Loan Duration (months)" required>
+            <input type="number" name="principal" step="0.01" placeholder="Loan Amount (₹)" required>
+            <input type="number" name="rate" step="0.01" placeholder="Annual Interest Rate (%)" required>
+            <input type="number" name="months" placeholder="Loan Duration (in months)" required>
             <button type="submit">Calculate EMI</button>
         </form>
-
         {% if result %}
-            <div class="result">{{ result }}</div>
+        <div class="result">{{ result }}</div>
         {% endif %}
     </div>
 </body>
