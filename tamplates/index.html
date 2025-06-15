@@ -5,26 +5,56 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <div class="top-bar">
-        <h1>🧮 GYI Calculator</h1>
-        <div class="menu-button" onclick="toggleMenu()">⋮</div>
+
+    <!-- 3-dot dropdown menu -->
+    <div class="dropdown">
+        <button class="dropbtn">⋮</button>
+        <div class="dropdown-content">
+            <a href="/">Basic Calculator</a>
+            <a href="/scientific">Scientific Calculator</a>
+            <a href="/simple-interest">Simple Interest</a>
+            <a href="/money-value">Money Value</a>
+            <a href="/currency-compare">Currency Compare</a>
+            <a href="/todo">To-Do Bill List</a>
+            <a href="/emi">EMI Calculator</a>
+        </div>
     </div>
 
-    <div id="dropdownMenu" class="menu hidden">
-        <a href="/basic">Basic Calculator</a>
-        <a href="/scientific">Scientific Calculator</a>
-        <a href="/simple-interest">Simple Interest Calculator</a>
-        <a href="/money-value">Money Value Calculator</a>
-        <a href="/currency">Currency Comparison</a>
-        <a href="/todo">To-Do List (Bills)</a>
-        <a href="/emi">EMI Calculator</a>
+    <h1>🧮 GYI Basic Calculator</h1>
+
+    <div class="calculator">
+        <form method="POST">
+            <input type="text" name="expression" placeholder="0" value="{{ result if result else '' }}" readonly>
+
+            <div>
+                <button type="submit" name="btn" value="7">7</button>
+                <button type="submit" name="btn" value="8">8</button>
+                <button type="submit" name="btn" value="9">9</button>
+                <button type="submit" name="btn" value="/">÷</button>
+            </div>
+            <div>
+                <button type="submit" name="btn" value="4">4</button>
+                <button type="submit" name="btn" value="5">5</button>
+                <button type="submit" name="btn" value="6">6</button>
+                <button type="submit" name="btn" value="*">×</button>
+            </div>
+            <div>
+                <button type="submit" name="btn" value="1">1</button>
+                <button type="submit" name="btn" value="2">2</button>
+                <button type="submit" name="btn" value="3">3</button>
+                <button type="submit" name="btn" value="-">−</button>
+            </div>
+            <div>
+                <button type="submit" name="btn" value="0">0</button>
+                <button type="submit" name="btn" value=".">.</button>
+                <button type="submit" name="btn" value="C">C</button>
+                <button type="submit" name="btn" value="+">+</button>
+            </div>
+            <div>
+                <button type="submit" name="btn" value="=" style="width: 98%">=</button>
+            </div>
+        </form>
     </div>
 
-    <script>
-        function toggleMenu() {
-            const menu = document.getElementById("dropdownMenu");
-            menu.classList.toggle("hidden");
-        }
-    </script>
 </body>
 </html>
