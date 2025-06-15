@@ -5,79 +5,76 @@
     <title>EMI Calculator</title>
     <style>
         body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f0f4f8;
-            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             padding: 40px;
-            text-align: center;
-        }
-
-        .container {
-            background-color: white;
-            padding: 30px;
-            margin: auto;
-            max-width: 500px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
         h1 {
-            color: #2c5282;
+            color: #34495e;
         }
 
-        input[type="number"] {
-            width: 80%;
-            padding: 10px;
+        form {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        input, button {
+            width: 90%;
             margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-        }
-
-        button {
-            padding: 10px 25px;
-            background-color: #4299e1;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
+            padding: 10px;
             font-size: 16px;
         }
 
-        button:hover {
-            background-color: #3182ce;
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
         }
 
-        .result {
-            margin-top: 20px;
-            font-size: 18px;
-            color: #1a202c;
+        button:hover {
+            background-color: #0056b3;
         }
 
         a {
-            display: inline-block;
             margin-top: 20px;
-            color: #3182ce;
+            display: inline-block;
+            color: #007bff;
             text-decoration: none;
         }
 
         a:hover {
             text-decoration: underline;
         }
+
+        h3 {
+            margin-top: 20px;
+            color: #2c3e50;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>💳 EMI Calculator</h1>
-        <form method="POST">
-            <input type="number" step="any" name="principal" placeholder="Principal Amount (₹)" required><br>
-            <input type="number" step="any" name="rate" placeholder="Annual Interest Rate (%)" required><br>
-            <input type="number" name="months" placeholder="Loan Duration (months)" required><br>
-            <button type="submit">Calculate EMI</button>
-        </form>
+    <h1>💳 EMI Calculator</h1>
+    <form method="post">
+        <input type="number" name="principal" step="0.01" placeholder="Loan Amount" required>
+        <input type="number" name="rate" step="0.01" placeholder="Annual Interest Rate (%)" required>
+        <input type="number" name="months" placeholder="Loan Tenure (in Months)" required>
+        <button type="submit">Calculate EMI</button>
+    </form>
 
-        {% if result %}
-            <div class="result">{{ result }}</div>
-        {% endif %}
-        <a href="/">← Back to Home</a>
-    </div>
+    {% if result %}
+        <h3>{{ result }}</h3>
+    {% endif %}
+
+    <a href="/">← Back to Home</a>
 </body>
 </html>
