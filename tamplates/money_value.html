@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Money Value Estimator - GYI</title>
+    <title>Money Value Estimator</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <style>
         body {
@@ -14,9 +14,10 @@
 
         h1 {
             text-align: center;
+            margin-bottom: 20px;
         }
 
-        .form-container {
+        .container {
             max-width: 500px;
             margin: auto;
             background-color: #1e1e1e;
@@ -53,7 +54,6 @@
         .result {
             margin-top: 20px;
             font-size: 1.2rem;
-            font-weight: bold;
         }
 
         .dropdown {
@@ -112,14 +112,15 @@
         </div>
     </div>
 
-    <div class="form-container">
+    <div class="container">
         <h1>💸 Future Money Value</h1>
         <form method="POST">
-            <input type="number" name="amount" placeholder="Current Amount (₹)" required><br>
-            <input type="number" name="inflation" placeholder="Inflation Rate (%)" step="0.1" required><br>
-            <input type="number" name="years" placeholder="Years in Future" required><br>
-            <input type="submit" value="Estimate">
+            <input type="number" name="amount" placeholder="Current Amount (₹)" required>
+            <input type="number" name="inflation" placeholder="Inflation Rate (%)" required>
+            <input type="number" name="years" placeholder="Years Ahead" required>
+            <input type="submit" value="Calculate">
         </form>
+
         {% if result %}
             <div class="result">{{ result }}</div>
         {% endif %}
