@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GYI Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            background-color: #121212;
+            color: #00FF88;
+            font-family: 'Poppins', sans-serif;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .nav-container {
+            text-align: right;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .menu-icon {
+            font-size: 24px;
+            cursor: pointer;
+            color: #00FF88;
+            padding: 10px;
+        }
+
+        .dropdown {
+            display: none;
+            background-color: #1e1e1e;
+            border: 1px solid #00FF88;
+            border-radius: 10px;
+            position: absolute;
+            top: 40px;
+            right: 0;
+            text-align: left;
+            z-index: 100;
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 10px 20px;
+            color: #00FF88;
+            text-decoration: none;
+        }
+
+        .dropdown a:hover {
+            background-color: #00FF88;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="nav-container">
+        <div class="menu-icon" onclick="toggleDropdown()">☰</div>
+        <div class="dropdown" id="dropdownMenu">
+            <a href="/">🧮 Basic Calculator</a>
+            <a href="/scientific">🔬 Scientific Calculator</a>
+            <a href="/simple-interest">📈 Simple Interest</a>
+            <a href="/money-value">⏳ Future Value</a>
+            <a href="/currency-compare">🌍 Currency Compare</a>
+            <a href="/todo">📝 To-Do / Bills</a>
+            <a href="/emi">💳 EMI Calculator</a>
+        </div>
+    </div>
+
+    {% block content %}{% endblock %}
+
+    <script>
+        function toggleDropdown() {
+            var menu = document.getElementById("dropdownMenu");
+            menu.style.display = menu.style.display === "block" ? "none" : "block";
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('.menu-icon')) {
+                var dropdown = document.getElementById("dropdownMenu");
+                if (dropdown.style.display === "block") {
+                    dropdown.style.display = "none";
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
