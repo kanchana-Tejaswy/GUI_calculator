@@ -2,129 +2,87 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Simple Interest Calculator - GYI</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Simple Interest Calculator</title>
     <style>
-        .form-container {
-            max-width: 450px;
-            margin: 40px auto;
-            background-color: #1e1e1e;
+        body {
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            background-color: white;
             padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 0 15px #00FF88;
+            max-width: 500px;
+            margin: auto;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
         }
 
         h1 {
-            text-align: center;
-            color: #00FF88;
+            color: #333;
         }
 
         input[type="number"] {
-            width: 90%;
-            padding: 12px;
-            margin: 10px auto;
-            display: block;
-            border-radius: 10px;
-            border: none;
-            background-color: #000;
-            color: #00FF88;
-            font-size: 1rem;
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
         }
 
-        input[type="submit"] {
-            background-color: #00FF88;
-            color: black;
+        button {
+            background-color: #28a745;
+            color: white;
             padding: 12px 20px;
-            border-radius: 8px;
+            font-size: 16px;
             border: none;
-            font-weight: bold;
+            border-radius: 6px;
             cursor: pointer;
-            transition: 0.3s;
-            display: block;
-            margin: 20px auto;
-            width: 50%;
         }
 
-        input[type="submit"]:hover {
-            background-color: #00cc66;
+        button:hover {
+            background-color: #218838;
         }
 
         .result {
-            text-align: center;
             margin-top: 20px;
-            color: #00FF88;
-            font-size: 1.2rem;
+            font-size: 18px;
+            color: #444;
         }
 
-        /* Dropdown Navigation */
-        .dropdown {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-        }
-
-        .dropbtn {
-            font-size: 24px;
-            background: none;
-            border: none;
-            color: #00FF88;
-            cursor: pointer;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            right: 0;
-            background-color: #1e1e1e;
-            min-width: 180px;
-            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-            z-index: 1;
-            border-radius: 10px;
-        }
-
-        .dropdown-content a {
-            color: #00FF88;
-            padding: 10px 14px;
+        a {
+            display: block;
+            margin-top: 20px;
             text-decoration: none;
-            display: block;
+            color: #007bff;
         }
 
-        .dropdown-content a:hover {
-            background-color: #00FF88;
-            color: #000;
+        a:hover {
+            text-decoration: underline;
         }
 
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
     </style>
 </head>
 <body>
-    <div class="dropdown">
-        <button class="dropbtn">⋮</button>
-        <div class="dropdown-content">
-            <a href="/">Basic Calculator</a>
-            <a href="/scientific">Scientific Calculator</a>
-            <a href="/simple-interest">Simple Interest</a>
-            <a href="/money-value">Money Value</a>
-            <a href="/currency-compare">Currency Comparison</a>
-            <a href="/todo">To-Do Bill List</a>
-            <a href="/emi">EMI Calculator</a>
-        </div>
-    </div>
+    <div class="container">
+        <h1>📈 Simple Interest Calculator</h1>
 
-    <div class="form-container">
-        <h1>💰 Simple Interest Calculator</h1>
         <form method="POST">
-            <input type="number" name="principal" placeholder="Principal Amount (₹)" required>
-            <input type="number" name="rate" placeholder="Rate of Interest (%)" step="0.01" required>
-            <input type="number" name="time" placeholder="Time (in years)" step="0.1" required>
-            <input type="submit" value="Calculate">
+            <input type="number" step="0.01" name="principal" placeholder="Enter Principal (₹)" required><br>
+            <input type="number" step="0.01" name="rate" placeholder="Enter Rate of Interest (%)" required><br>
+            <input type="number" step="0.01" name="time" placeholder="Enter Time (Years)" required><br>
+            <button type="submit">Calculate Interest</button>
         </form>
 
         {% if result %}
-            <div class="result">{{ result }}</div>
+            <div class="result">
+                <p>{{ result }}</p>
+            </div>
         {% endif %}
+
+        <a href="/">← Back to Home</a>
     </div>
 </body>
 </html>

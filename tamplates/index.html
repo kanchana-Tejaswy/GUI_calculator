@@ -2,39 +2,79 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>GYI Calculator - Basic Calculator</title>
+    <title>All-in-One Calculator App</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            background-color: #1e1e1e;
+            color: #00FF88;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .container {
+            padding: 50px 20px;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+            font-size: 32px;
+        }
+
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .nav-item {
+            background-color: #121212;
+            padding: 20px;
+            border-radius: 15px;
+            text-decoration: none;
+            color: #00FF88;
+            font-size: 18px;
+            box-shadow: 0 0 10px #00FF88;
+            transition: 0.3s ease;
+        }
+
+        .nav-item:hover {
+            background-color: #00FF88;
+            color: #000;
+        }
+
+        footer {
+            margin-top: 50px;
+            font-size: 14px;
+            color: #aaa;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>GYI Calculator</h1>
+    <div class="container">
+        <h1>📱 All-in-One Calculator App</h1>
 
-        <!-- Three-dot menu -->
-        <div class="dropdown">
-            <button class="dropbtn">⋮</button>
-            <div class="dropdown-content">
-                <a href="/">Basic Calculator</a>
-                <a href="/scientific">Scientific Calculator</a>
-                <a href="/simple-interest">Simple Interest</a>
-                <a href="/money-value">Money Value</a>
-                <a href="/currency-compare">Currency Comparison</a>
-                <a href="/todo">To-Do Bill List</a>
-                <a href="/emi">EMI Calculator</a>
-            </div>
+        <div class="nav-grid">
+            <a class="nav-item" href="/">🧮 Basic Calculator</a>
+            <a class="nav-item" href="/scientific">🔬 Scientific Calculator</a>
+            <a class="nav-item" href="/simple-interest">📈 Simple Interest Calculator</a>
+            <a class="nav-item" href="/money-value">⏳ Future Money Value</a>
+            <a class="nav-item" href="/currency-compare">🌍 Currency Comparison</a>
+            <a class="nav-item" href="/todo">📝 Bill To-Do List</a>
+            <a class="nav-item" href="/emi">💳 EMI Calculator</a>
         </div>
-    </header>
-
-    <main>
-        <h2>🧮 Basic Calculator</h2>
-        <form method="POST">
-            <input type="text" name="expression" placeholder="Enter expression (e.g. 5+3*2)" required>
-            <br>
-            <input type="submit" value="Calculate">
-        </form>
 
         {% if result %}
-            <h3>Result: {{ result }}</h3>
+            <div class="result" style="margin-top: 30px; font-size: 20px;">Result: {{ result }}</div>
         {% endif %}
-    </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 All-in-One Calculator App | Developed by Tejaswy</p>
+    </footer>
 </body>
 </html>
