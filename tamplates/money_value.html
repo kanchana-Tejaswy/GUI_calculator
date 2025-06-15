@@ -5,36 +5,51 @@
     <title>Money Value Estimator</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <style>
-        .calc-container {
-            max-width: 400px;
-            margin: 30px auto;
+        body {
             background-color: #1e1e1e;
+            font-family: 'Poppins', sans-serif;
+            color: #00FF88;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .value-container {
+            background-color: #121212;
+            padding: 30px;
             border-radius: 15px;
-            padding: 20px;
             box-shadow: 0 0 15px #00FF88;
+            width: 100%;
+            max-width: 500px;
         }
 
         h2 {
+            text-align: center;
             margin-bottom: 20px;
-            color: #00FF88;
         }
 
-        input, button {
-            width: 90%;
+        input[type="number"] {
+            width: 100%;
             padding: 12px;
-            margin: 10px auto;
+            margin: 10px 0;
             border-radius: 10px;
             border: none;
             background-color: #1e1e1e;
             color: #00FF88;
             font-size: 1rem;
-            display: block;
         }
 
         button {
+            width: 100%;
+            padding: 12px;
             background-color: #00FF88;
             color: #000;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
             font-weight: bold;
+            margin-top: 10px;
             cursor: pointer;
         }
 
@@ -43,24 +58,25 @@
         }
 
         .result {
-            margin-top: 20px;
-            color: #00FF88;
+            text-align: center;
+            margin-top: 15px;
+            font-size: 1.2rem;
             font-weight: bold;
+            color: #00FF88;
         }
     </style>
 </head>
 <body>
-    <div class="calc-container">
+    <div class="value-container">
         <h2>Money Value Estimator</h2>
         <form method="POST">
-            <input type="number" name="amount" placeholder="Current Amount (₹)" required>
-            <input type="number" name="inflation" placeholder="Inflation Rate (%)" step="0.01" required>
-            <input type="number" name="years" placeholder="Number of Years" required>
+            <input type="number" name="amount" step="0.01" placeholder="Present Value (₹)" required>
+            <input type="number" name="inflation" step="0.01" placeholder="Annual Inflation Rate (%)" required>
+            <input type="number" name="years" placeholder="Years Into Future" required>
             <button type="submit">Estimate Future Value</button>
         </form>
-
         {% if result %}
-            <div class="result">{{ result }}</div>
+        <div class="result">{{ result }}</div>
         {% endif %}
     </div>
 </body>
