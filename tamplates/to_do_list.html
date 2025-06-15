@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Bill To-Do List - GYI</title>
+    <title>To-Do Bill List - GYI</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <style>
         body {
@@ -14,9 +14,10 @@
 
         h1 {
             text-align: center;
+            margin-bottom: 20px;
         }
 
-        .todo-container {
+        .form-container {
             max-width: 500px;
             margin: auto;
             background-color: #1e1e1e;
@@ -25,45 +26,42 @@
             box-shadow: 0 0 15px #00FF88;
         }
 
-        input[type="text"] {
-            width: 80%;
-            padding: 10px;
-            border-radius: 8px;
-            border: none;
-            background-color: #000;
-            color: #00FF88;
-            margin-bottom: 15px;
-        }
-
-        button {
-            padding: 10px 15px;
-            background-color: #00FF88;
-            color: black;
-            font-weight: bold;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        button:hover {
-            background-color: #00cc66;
-        }
-
         ul {
             list-style-type: none;
-            padding: 0;
+            padding-left: 0;
         }
 
         li {
             background-color: #000;
-            margin-bottom: 10px;
-            padding: 10px;
-            border-radius: 8px;
             color: #00FF88;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            padding: 10px;
+            margin-bottom: 8px;
+            border-radius: 8px;
+        }
+
+        input[type="text"] {
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: none;
+            background-color: #000;
+            color: #00FF88;
+        }
+
+        input[type="submit"] {
+            background-color: #00FF88;
+            color: black;
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #00cc66;
         }
 
         .dropdown {
@@ -122,31 +120,19 @@
         </div>
     </div>
 
-    <div class="todo-container">
-        <h1>📝 Bill To-Do List</h1>
-        <input type="text" id="taskInput" placeholder="Add new bill task...">
-        <button onclick="addTask()">Add</button>
-        <ul id="taskList"></ul>
+    <div class="form-container">
+        <h1>📋 Bill Payment To-Do List</h1>
+        <form method="POST">
+            <input type="text" name="task" placeholder="Enter your bill task (e.g. Pay electricity bill)">
+            <input type="submit" value="Add Task">
+        </form>
+
+        <ul>
+            <li>✅ Electricity Bill - ₹1200</li>
+            <li>✅ Internet Bill - ₹999</li>
+            <li>📅 Rent - ₹5000 (Due 5th July)</li>
+            <li>📅 Mobile Recharge - ₹299</li>
+        </ul>
     </div>
-
-    <script>
-        function addTask() {
-            const taskInput = document.getElementById('taskInput');
-            const taskText = taskInput.value.trim();
-            if (taskText === "") return;
-
-            const li = document.createElement("li");
-            li.textContent = taskText;
-
-            const deleteBtn = document.createElement("button");
-            deleteBtn.textContent = "❌";
-            deleteBtn.style.marginLeft = "10px";
-            deleteBtn.onclick = () => li.remove();
-
-            li.appendChild(deleteBtn);
-            document.getElementById("taskList").appendChild(li);
-            taskInput.value = "";
-        }
-    </script>
 </body>
 </html>
