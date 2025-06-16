@@ -1,101 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>📈 Simple Interest Calculator</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', sans-serif;
-            background: linear-gradient(to right, #f0f9ff, #e0f2fe);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            color: #1e293b;
-        }
+  <meta charset="UTF-8">
+  <title>Simple Interest Calculator</title>
+  <style>
+    body {
+      background-color: #1e1e1e;
+      color: #00ff84;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      min-height: 100vh;
+      margin: 0;
+    }
 
-        .calculator {
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 18px;
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
-            width: 90%;
-            max-width: 400px;
-            text-align: center;
-        }
+    h1 {
+      color: #00ff84;
+      margin-bottom: 20px;
+    }
 
-        h1 {
-            margin-bottom: 25px;
-            color: #0f172a;
-        }
+    form {
+      background-color: #2c2c2c;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #00ff84;
+      width: 100%;
+      max-width: 400px;
+    }
 
-        input[type="number"] {
-            width: 100%;
-            padding: 15px;
-            margin: 10px 0;
-            font-size: 1rem;
-            border-radius: 10px;
-            border: 1px solid #cbd5e1;
-            background-color: #f8fafc;
-        }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
 
-        button {
-            padding: 12px 20px;
-            font-size: 1rem;
-            margin-top: 15px;
-            border: none;
-            border-radius: 10px;
-            background-color: #2563eb;
-            color: white;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      font-size: 1rem;
+      margin-top: 5px;
+      background-color: #1e1e1e;
+      color: #00ff84;
+      border: 1px solid #00ff84;
+      border-radius: 5px;
+    }
 
-        button:hover {
-            background-color: #1d4ed8;
-        }
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 20px;
+      font-size: 1rem;
+      background-color: #00ff84;
+      color: #1e1e1e;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
 
-        .result {
-            margin-top: 20px;
-            font-size: 1.2rem;
-            color: #10b981;
-        }
+    button:hover {
+      background-color: #00cc6a;
+    }
 
-        .back-link {
-            display: inline-block;
-            margin-top: 25px;
-            text-decoration: none;
-            color: #2563eb;
-            font-size: 0.95rem;
-            padding: 8px 14px;
-            border-radius: 8px;
-            background-color: #f1f5f9;
-        }
+    .result {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      color: #00ff84;
+    }
 
-        .back-link:hover {
-            background-color: #e2e8f0;
-        }
-    </style>
+    nav {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+
+    .dropdown {
+      background-color: #2c2c2c;
+      border: 1px solid #00ff84;
+      color: #00ff84;
+      padding: 8px;
+      border-radius: 5px;
+    }
+
+    a {
+      color: #00ff84;
+      margin-top: 20px;
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
-    <div class="calculator">
-        <h1>📈 Simple Interest</h1>
-        <form method="post">
-            <input type="number" name="principal" placeholder="Principal Amount (₹)" required><br>
-            <input type="number" name="rate" placeholder="Annual Interest Rate (%)" required><br>
-            <input type="number" name="time" placeholder="Time (Years)" required><br>
-            <button type="submit">Calculate Interest</button>
-        </form>
 
-        {% if result %}
-            <div class="result">
-                {{ result }}
-            </div>
-        {% endif %}
+  <h1>Simple Interest Calculator</h1>
 
-        <a href="/" class="back-link">← Back to Home</a>
-    </div>
+  <form method="POST">
+    <label for="principal">Principal Amount (₹):</label>
+    <input type="number" name="principal" id="principal" step="0.01" required>
+
+    <label for="rate">Rate of Interest (%):</label>
+    <input type="number" name="rate" id="rate" step="0.01" required>
+
+    <label for="time">Time Period (years):</label>
+    <input type="number" name="time" id="time" step="0.01" required>
+
+    <button type="submit">Calculate Interest</button>
+  </form>
+
+  {% if result %}
+    <div class="result">{{ result }}</div>
+  {% endif %}
+
+  <nav>
+    <select class="dropdown" onchange="navigateTo(this.value)">
+      <option value="">☰ More Tools</option>
+      <option value="/">Basic Calculator</option>
+      <option value="/scientific">Scientific Calculator</option>
+      <option value="/currency">Currency Converter</option>
+      <option value="/money-value">Future Money Value</option>
+      <option value="/emi">EMI Calculator</option>
+      <option value="/todo">To-Do List</option>
+    </select>
+  </nav>
+
+  <script>
+    function navigateTo(path) {
+      if (path) window.location.href = path;
+    }
+  </script>
+
 </body>
 </html>

@@ -1,131 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>💱 Currency Converter</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            background: #f8fafc;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
+  <meta charset="UTF-8">
+  <title>Currency Converter</title>
+  <style>
+    body {
+      background-color: #1e1e1e;
+      color: #00ff84;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      min-height: 100vh;
+      margin: 0;
+    }
 
-        .converter-container {
-            background: #ffffff;
-            padding: 40px;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            width: 90%;
-            max-width: 500px;
-            text-align: center;
-        }
+    h1 {
+      margin-bottom: 20px;
+      color: #00ff84;
+    }
 
-        h1 {
-            color: #1e293b;
-            margin-bottom: 25px;
-        }
+    form {
+      background-color: #2c2c2c;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #00ff84;
+      width: 100%;
+      max-width: 400px;
+    }
 
-        input, select {
-            padding: 12px;
-            margin: 10px 0;
-            width: 100%;
-            font-size: 1rem;
-            border: 1px solid #cbd5e1;
-            border-radius: 8px;
-            box-sizing: border-box;
-        }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
 
-        button {
-            background-color: #2563eb;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            font-size: 1rem;
-            border-radius: 8px;
-            cursor: pointer;
-            margin-top: 15px;
-            transition: background-color 0.3s ease;
-        }
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      font-size: 1rem;
+      margin-top: 5px;
+      background-color: #1e1e1e;
+      color: #00ff84;
+      border: 1px solid #00ff84;
+      border-radius: 5px;
+    }
 
-        button:hover {
-            background-color: #1e40af;
-        }
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 20px;
+      font-size: 1rem;
+      background-color: #00ff84;
+      color: #1e1e1e;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
 
-        .result {
-            margin-top: 20px;
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: #10b981;
-        }
+    button:hover {
+      background-color: #00cc6a;
+    }
 
-        .footer-links {
-            margin-top: 30px;
-            font-size: 0.95rem;
-        }
+    .result {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      color: #00ff84;
+    }
 
-        .footer-links a {
-            color: #334155;
-            text-decoration: none;
-            margin: 0 8px;
-        }
+    nav {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
 
-        .swap-btn {
-            margin-top: 10px;
-            background-color: #64748b;
-        }
+    .dropdown {
+      background-color: #2c2c2c;
+      border: 1px solid #00ff84;
+      color: #00ff84;
+      padding: 8px;
+      border-radius: 5px;
+    }
 
-        .swap-btn:hover {
-            background-color: #475569;
-        }
-    </style>
+    a {
+      color: #00ff84;
+      margin-top: 20px;
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
-    <div class="converter-container">
-        <h1>💱 Currency Converter</h1>
 
-        <form method="post">
-            <input type="number" name="amount" placeholder="Enter amount" step="any" required>
+  <h1>Currency Converter</h1>
 
-            <select name="from_currency" required>
-                <option value="INR">🇮🇳 INR</option>
-                <option value="USD">🇺🇸 USD</option>
-                <option value="EUR">🇪🇺 EUR</option>
-                <option value="JPY">🇯🇵 JPY</option>
-                <option value="GBP">🇬🇧 GBP</option>
-                <!-- Add more if needed -->
-            </select>
+  <form method="POST">
+    <label for="amount">Amount in your Currency:</label>
+    <input type="number" name="amount" id="amount" step="0.01" required>
 
-            <select name="to_currency" required>
-                <option value="USD">🇺🇸 USD</option>
-                <option value="INR">🇮🇳 INR</option>
-                <option value="EUR">🇪🇺 EUR</option>
-                <option value="JPY">🇯🇵 JPY</option>
-                <option value="GBP">🇬🇧 GBP</option>
-            </select>
+    <label for="rate">Conversion Rate (e.g. 1 USD = ? INR):</label>
+    <input type="number" name="rate" id="rate" step="0.0001" required>
 
-            <button type="submit">Convert</button>
-        </form>
+    <button type="submit">Convert</button>
+  </form>
 
-        <form method="post" style="margin-top: 5px;">
-            <input type="hidden" name="swap" value="1">
-            <button class="swap-btn" type="submit">🔁 Swap Currencies</button>
-        </form>
+  {% if result %}
+    <div class="result">{{ result }}</div>
+  {% endif %}
 
-        {% if result %}
-            <div class="result">Converted Amount: {{ result }}</div>
-        {% endif %}
+  <nav>
+    <select class="dropdown" onchange="navigateTo(this.value)">
+      <option value="">☰ More Tools</option>
+      <option value="/">Basic Calculator</option>
+      <option value="/scientific">Scientific Calculator</option>
+      <option value="/simple-interest">Simple Interest</option>
+      <option value="/money-value">Future Money Value</option>
+      <option value="/emi">EMI Calculator</option>
+      <option value="/todo">To-Do List</option>
+    </select>
+  </nav>
 
-        <div class="footer-links">
-            <a href="/">🏠 Home</a>
-            <a href="/basic">🧮 Basic Calc</a>
-            <a href="/simple-interest">📈 Simple Interest</a>
-            <a href="/money-value">⏳ Future Value</a>
-            <a href="/emi">💳 EMI</a>
-        </div>
-    </div>
+  <script>
+    function navigateTo(path) {
+      if (path) window.location.href = path;
+    }
+  </script>
+
 </body>
 </html>

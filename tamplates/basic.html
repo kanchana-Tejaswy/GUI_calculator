@@ -1,134 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>🧮 Basic Calculator</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            background: #f1f5f9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
+  <meta charset="UTF-8">
+  <title>Basic Calculator</title>
+  <style>
+    body {
+      background-color: #1e1e1e;
+      color: #d4d4d4;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      min-height: 100vh;
+      margin: 0;
+    }
 
-        .calculator-container {
-            background: #ffffff;
-            padding: 40px;
-            border-radius: 16px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            width: 90%;
-            max-width: 400px;
-        }
+    h1 {
+      color: #00ff84;
+      margin-bottom: 10px;
+    }
 
-        h1 {
-            margin-bottom: 20px;
-            color: #1e293b;
-        }
+    .calculator {
+      background-color: #2c2c2c;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #00ff84;
+      width: 100%;
+      max-width: 400px;
+    }
 
-        input[type="text"] {
-            width: 100%;
-            padding: 15px;
-            font-size: 1.2rem;
-            border: 2px solid #cbd5e1;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            box-sizing: border-box;
-        }
+    input[type="text"] {
+      width: 100%;
+      padding: 15px;
+      font-size: 1.2rem;
+      background-color: #1e1e1e;
+      color: #00ff84;
+      border: none;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
 
-        .button-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            margin-bottom: 20px;
-        }
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
 
-        button {
-            padding: 15px;
-            font-size: 1.1rem;
-            border: none;
-            background-color: #2563eb;
-            color: white;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
+    .buttons button {
+      padding: 15px;
+      font-size: 1.1rem;
+      background-color: #3a3a3a;
+      color: #00ff84;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
 
-        button:hover {
-            background-color: #1d4ed8;
-        }
+    .buttons button:hover {
+      background-color: #00ff84;
+      color: #1e1e1e;
+    }
 
-        .nav-links {
-            margin-top: 15px;
-            font-size: 0.95rem;
-        }
+    .actions {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
 
-        .nav-links a {
-            margin: 0 5px;
-            text-decoration: none;
-            color: #0f172a;
-        }
+    .actions button {
+      flex: 1;
+      margin: 5px;
+      padding: 10px;
+    }
 
-        .result {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: #10b981;
-            margin-bottom: 10px;
-        }
-    </style>
+    nav {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+
+    .dropdown {
+      background-color: #2c2c2c;
+      border: 1px solid #00ff84;
+      color: #00ff84;
+      padding: 8px;
+      border-radius: 5px;
+    }
+
+    .result {
+      margin-top: 15px;
+      font-size: 1.2rem;
+      color: #00ff84;
+    }
+
+    a {
+      color: #00ff84;
+      text-decoration: none;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
-    <div class="calculator-container">
-        <h1>🧮 Basic Calculator</h1>
 
-        {% if result %}
-            <div class="result">Result: {{ result }}</div>
-        {% endif %}
+  <h1>Basic Calculator</h1>
 
-        <form method="post">
-            <input type="text" name="expression" placeholder="Enter expression like 5+3" required>
+  <form class="calculator" method="POST">
+    <input type="text" id="expression" name="expression" placeholder="Enter expression..." required>
 
-            <div class="button-grid">
-                <button type="button" onclick="append('7')">7</button>
-                <button type="button" onclick="append('8')">8</button>
-                <button type="button" onclick="append('9')">9</button>
-                <button type="button" onclick="append('+')">+</button>
+    <div class="buttons">
+      <button type="button" onclick="appendValue('7')">7</button>
+      <button type="button" onclick="appendValue('8')">8</button>
+      <button type="button" onclick="appendValue('9')">9</button>
+      <button type="button" onclick="appendValue('/')">/</button>
 
-                <button type="button" onclick="append('4')">4</button>
-                <button type="button" onclick="append('5')">5</button>
-                <button type="button" onclick="append('6')">6</button>
-                <button type="button" onclick="append('-')">-</button>
+      <button type="button" onclick="appendValue('4')">4</button>
+      <button type="button" onclick="appendValue('5')">5</button>
+      <button type="button" onclick="appendValue('6')">6</button>
+      <button type="button" onclick="appendValue('')"></button>
 
-                <button type="button" onclick="append('1')">1</button>
-                <button type="button" onclick="append('2')">2</button>
-                <button type="button" onclick="append('3')">3</button>
-                <button type="button" onclick="append('')"></button>
+      <button type="button" onclick="appendValue('1')">1</button>
+      <button type="button" onclick="appendValue('2')">2</button>
+      <button type="button" onclick="appendValue('3')">3</button>
+      <button type="button" onclick="appendValue('-')">-</button>
 
-                <button type="button" onclick="append('0')">0</button>
-                <button type="button" onclick="append('.')">.</button>
-                <button type="submit">=</button>
-                <button type="button" onclick="append('/')">/</button>
-            </div>
-        </form>
-
-        <div class="nav-links">
-            <a href="/simple-interest">📈 Simple Interest</a> |
-            <a href="/currency-compare">💱 Currency Compare</a> |
-            <a href="/money-value">⏳ Future Value</a><br>
-            <a href="/emi">💳 EMI</a> |
-            <a href="/todo">✅ To-Do List</a> |
-            <a href="/scientific">🔬 Scientific</a>
-        </div>
+      <button type="button" onclick="appendValue('0')">0</button>
+      <button type="button" onclick="appendValue('.')">.</button>
+      <button type="button" onclick="clearInput()">C</button>
+      <button type="button" onclick="appendValue('+')">+</button>
     </div>
 
-    <script>
-        function append(value) {
-            const input = document.querySelector('input[name="expression"]');
-            input.value += value;
-        }
-    </script>
+    <div class="actions">
+      <button type="submit">=</button>
+      <button type="button" onclick="backspace()">⌫</button>
+    </div>
+  </form>
+
+  {% if result %}
+    <div class="result">Result: {{ result }}</div>
+  {% endif %}
+
+  <nav>
+    <select class="dropdown" onchange="navigateTo(this.value)">
+      <option value="">☰ More Tools</option>
+      <option value="/simple-interest">Simple Interest</option>
+      <option value="/currency">Currency Converter</option>
+      <option value="/money-value">Future Money Value</option>
+      <option value="/emi">EMI Calculator</option>
+      <option value="/todo">To-Do List</option>
+      <option value="/scientific">Scientific Calculator</option>
+    </select>
+  </nav>
+
+  <a href="/">🔁 Reset</a>
+
+  <script>
+    function appendValue(val) {
+      document.getElementById("expression").value += val;
+    }
+
+    function clearInput() {
+      document.getElementById("expression").value = '';
+    }
+
+    function backspace() {
+      let input = document.getElementById("expression");
+      input.value = input.value.slice(0, -1);
+    }
+
+    function navigateTo(path) {
+      if (path) window.location.href = path;
+    }
+  </script>
+
 </body>
 </html>

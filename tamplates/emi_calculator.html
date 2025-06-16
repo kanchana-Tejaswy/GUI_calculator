@@ -1,103 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>💳 EMI Calculator</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            background: #f0f4f8;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
+  <meta charset="UTF-8">
+  <title>EMI Calculator</title>
+  <style>
+    body {
+      background-color: #1e1e1e;
+      color: #00ff84;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      min-height: 100vh;
+      margin: 0;
+    }
 
-        .container {
-            background-color: #ffffff;
-            padding: 40px;
-            border-radius: 16px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-            width: 90%;
-            max-width: 500px;
-            text-align: center;
-        }
+    h1 {
+      margin-bottom: 20px;
+      color: #00ff84;
+    }
 
-        h1 {
-            color: #1f2937;
-            margin-bottom: 25px;
-        }
+    form {
+      background-color: #2c2c2c;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #00ff84;
+      width: 100%;
+      max-width: 400px;
+    }
 
-        input {
-            width: 100%;
-            padding: 12px;
-            margin: 12px 0;
-            border: 1px solid #cbd5e1;
-            border-radius: 8px;
-            font-size: 1rem;
-            box-sizing: border-box;
-        }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
 
-        button {
-            width: 100%;
-            padding: 12px;
-            font-size: 1rem;
-            background-color: #2563eb;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            margin-top: 10px;
-        }
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      font-size: 1rem;
+      margin-top: 5px;
+      background-color: #1e1e1e;
+      color: #00ff84;
+      border: 1px solid #00ff84;
+      border-radius: 5px;
+    }
 
-        button:hover {
-            background-color: #1d4ed8;
-        }
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 20px;
+      font-size: 1rem;
+      background-color: #00ff84;
+      color: #1e1e1e;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
 
-        .result {
-            margin-top: 20px;
-            color: #059669;
-            font-size: 1.3rem;
-            font-weight: bold;
-        }
+    button:hover {
+      background-color: #00cc6a;
+    }
 
-        .footer-links {
-            margin-top: 30px;
-            font-size: 0.95rem;
-        }
+    .result {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      color: #00ff84;
+    }
 
-        .footer-links a {
-            color: #334155;
-            text-decoration: none;
-            margin: 0 8px;
-        }
-    </style>
+    nav {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+
+    .dropdown {
+      background-color: #2c2c2c;
+      border: 1px solid #00ff84;
+      color: #00ff84;
+      padding: 8px;
+      border-radius: 5px;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>💳 EMI Calculator</h1>
 
-        <form method="post">
-            <input type="number" name="principal" placeholder="Loan Amount (₹)" step="any" required>
-            <input type="number" name="rate" placeholder="Annual Interest Rate (%)" step="any" required>
-            <input type="number" name="months" placeholder="Loan Tenure (in months)" required>
-            <button type="submit">Calculate EMI</button>
-        </form>
+  <h1>EMI Calculator</h1>
 
-        {% if result %}
-            <div class="result">Monthly EMI: ₹{{ result }}</div>
-        {% endif %}
+  <form method="POST">
+    <label for="principal">Loan Amount (₹):</label>
+    <input type="number" name="principal" id="principal" required>
 
-        <div class="footer-links">
-            <a href="/">🏠 Home</a>
-            <a href="/basic">🧮 Basic Calc</a>
-            <a href="/simple-interest">📈 Simple Interest</a>
-            <a href="/currency-compare">💱 Currency</a>
-            <a href="/money-value">⏳ Future Value</a>
-            <a href="/todo">📝 To-Do</a>
-        </div>
-    </div>
+    <label for="rate">Annual Interest Rate (%):</label>
+    <input type="number" name="rate" id="rate" step="0.01" required>
+
+    <label for="months">Tenure (in Months):</label>
+    <input type="number" name="months" id="months" required>
+
+    <button type="submit">Calculate EMI</button>
+  </form>
+
+  {% if result %}
+    <div class="result">{{ result }}</div>
+  {% endif %}
+
+  <nav>
+    <select class="dropdown" onchange="navigateTo(this.value)">
+      <option value="">☰ More Tools</option>
+      <option value="/">Basic Calculator</option>
+      <option value="/scientific">Scientific Calculator</option>
+      <option value="/simple-interest">Simple Interest</option>
+      <option value="/currency">Currency Converter</option>
+      <option value="/money-value">Future Money Value</option>
+      <option value="/todo">To-Do List</option>
+    </select>
+  </nav>
+
+  <script>
+    function navigateTo(path) {
+      if (path) window.location.href = path;
+    }
+  </script>
+
 </body>
 </html>

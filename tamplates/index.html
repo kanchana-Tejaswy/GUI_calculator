@@ -2,110 +2,176 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>🧮 Smart Calculator Hub</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Calculator</title>
     <style>
         body {
-            margin: 0;
-            font-family: 'Segoe UI', sans-serif;
-            background: linear-gradient(to right, #eef2f3, #8e9eab);
-            color: #1e293b;
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+            justify-content: flex-start;
             height: 100vh;
-        }
-
-        .container {
-            background: #ffffff;
-            padding: 40px 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            width: 90%;
-            max-width: 600px;
-            text-align: center;
-            animation: fadeIn 1s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from {opacity: 0; transform: translateY(-20px);}
-            to {opacity: 1; transform: translateY(0);}
+            margin: 0;
+            padding: 20px;
         }
 
         h1 {
-            font-size: 2.2rem;
-            color: #0f172a;
-            margin-bottom: 20px;
+            color: #00ff84;
+            margin-bottom: 10px;
         }
 
-        p {
-            margin-bottom: 25px;
-            font-size: 1.1rem;
-            color: #334155;
-        }
-
-        .main-buttons button {
-            background-color: #2563eb;
-            color: white;
-            border: none;
-            padding: 14px 24px;
-            font-size: 1rem;
+        form {
+            background-color: #2c2c2c;
+            padding: 20px;
             border-radius: 10px;
-            margin: 10px;
-            cursor: pointer;
-            transition: background 0.3s ease;
+            box-shadow: 0 0 10px #00ff84;
+            width: 100%;
+            max-width: 400px;
         }
 
-        .main-buttons button:hover {
-            background-color: #1e40af;
+        input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 5px;
+            background-color: #1e1e1e;
+            color: #00ff84;
         }
 
-        .nav-links {
-            margin-top: 30px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
             gap: 10px;
+            margin-bottom: 10px;
         }
 
-        .nav-links a {
+        .buttons button {
+            padding: 15px;
+            font-size: 1.1rem;
+            background-color: #3a3a3a;
+            color: #00ff84;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .buttons button:hover {
+            background-color: #00ff84;
+            color: #1e1e1e;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .actions button {
+            flex: 1;
+            margin: 5px;
+        }
+
+        nav {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .dropdown {
+            background-color: #2c2c2c;
+            border: 1px solid #00ff84;
+            color: #00ff84;
+            padding: 8px;
+            border-radius: 5px;
+        }
+
+        .result {
+            margin-top: 15px;
+            font-size: 1.2rem;
+            color: #00ff84;
+        }
+
+        a {
+            color: #00ff84;
             text-decoration: none;
-            color: #2563eb;
-            background-color: #f1f5f9;
-            padding: 10px 18px;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            transition: background-color 0.3s;
-        }
-
-        .nav-links a:hover {
-            background-color: #e2e8f0;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🧮 Smart Calculator Hub</h1>
-        <p>Choose a tool to get started:</p>
 
-        <div class="main-buttons">
-            <form action="/basic">
-                <button type="submit">🔢 Basic Calculator</button>
-            </form>
-            <form action="/simple-interest">
-                <button type="submit">📈 Simple Interest</button>
-            </form>
-            <form action="/currency-compare">
-                <button type="submit">💱 Currency Converter</button>
-            </form>
+    <h1>Basic Calculator</h1>
+
+    <form method="POST">
+        <input type="text" name="expression" id="expression" placeholder="Enter Expression" required>
+        
+        <div class="buttons">
+            <button type="button" onclick="appendValue('7')">7</button>
+            <button type="button" onclick="appendValue('8')">8</button>
+            <button type="button" onclick="appendValue('9')">9</button>
+            <button type="button" onclick="appendValue('/')">/</button>
+
+            <button type="button" onclick="appendValue('4')">4</button>
+            <button type="button" onclick="appendValue('5')">5</button>
+            <button type="button" onclick="appendValue('6')">6</button>
+            <button type="button" onclick="appendValue('')"></button>
+
+            <button type="button" onclick="appendValue('1')">1</button>
+            <button type="button" onclick="appendValue('2')">2</button>
+            <button type="button" onclick="appendValue('3')">3</button>
+            <button type="button" onclick="appendValue('-')">-</button>
+
+            <button type="button" onclick="appendValue('0')">0</button>
+            <button type="button" onclick="appendValue('.')">.</button>
+            <button type="button" onclick="clearInput()">C</button>
+            <button type="button" onclick="appendValue('+')">+</button>
         </div>
 
-        <div class="nav-links">
-            <a href="/money-value">⏳ Future Money Value</a>
-            <a href="/emi">💳 EMI Calculator</a>
-            <a href="/todo">📝 To-Do List</a>
-            <a href="/scientific">🔬 Scientific Mode</a>
+        <div class="actions">
+            <button type="submit">=</button>
+            <button type="button" onclick="backspace()">⌫</button>
         </div>
-    </div>
+    </form>
+
+    {% if result %}
+        <div class="result">Result: {{ result }}</div>
+    {% endif %}
+
+    <nav>
+        <select class="dropdown" onchange="navigateTo(this.value)">
+            <option value="">☰ More Tools</option>
+            <option value="/simple-interest">Simple Interest</option>
+            <option value="/currency">Currency Converter</option>
+            <option value="/money-value">Future Money Value</option>
+            <option value="/emi">EMI Calculator</option>
+            <option value="/todo">To-Do List</option>
+            <option value="/scientific">Scientific Calculator</option>
+        </select>
+    </nav>
+
+    <a href="/">🔄 Reset</a>
+
+    <script>
+        function appendValue(val) {
+            document.getElementById("expression").value += val;
+        }
+
+        function clearInput() {
+            document.getElementById("expression").value = '';
+        }
+
+        function backspace() {
+            let input = document.getElementById("expression");
+            input.value = input.value.slice(0, -1);
+        }
+
+        function navigateTo(path) {
+            if (path) window.location.href = path;
+        }
+    </script>
+
 </body>
 </html>
